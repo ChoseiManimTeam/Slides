@@ -1,0 +1,51 @@
+/* スライドのデフォルト設定 */
+.reveal .slides section {
+    overflow-y: hidden; /* 初期状態でスクロール無効 */
+    max-height: calc(100vh - 20px); /* ビューポート全体に制限 */
+    box-sizing: border-box; /* 高さ計算を正確に */
+}
+
+/* スクロールが必要なスライド */
+.reveal .slides section.scrollable {
+overflow-y: auto !important; /* 縦スクロールを有効化 */
+max-height: calc(100vh - 20px); /* ビューポート全体に制限 */
+box-sizing: border-box; /* 高さ計算を正確に */
+}
+
+
+
+/* 全体の内側余白 */
+.wholeMargin{
+padding: 30px;
+}
+
+
+
+/* Beamer風ボックス全体のスタイル */
+.beamer-box {
+    border: 4px solid #4c4cff; /* 枠線の色 */
+    border-radius: 15px;       /* 角の丸み */
+    padding: 15px;            /* 内側の余白 */
+    margin: 30px;           /* 外側の余白 */
+    background-color: #f0f4ff; /* 背景色 */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* 影 */
+    font-family: "Arial", sans-serif; /* フォント */
+}
+
+/* タイトル部分（アクセント付き） */
+.beamer-box-title {
+    background-color: #4c4cff; /* タイトルバーの背景色 */
+    color: white;              /* 文字色 */
+    font-weight: bold;         /* 太字 */
+    padding: 8px 12px;         /* タイトルバーの内側余白 */
+    margin: -15px -15px 15px -15px; /* マイナス余白で枠線と一体化 */
+}
+
+/* 本文部分 */
+.beamer-box-content {
+    color: #333; /* テキストの色 */
+    line-height: 1.6; /* 行間 */
+}
+
+
+
