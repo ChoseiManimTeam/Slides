@@ -26,10 +26,10 @@ padding: 30px;
     border: 4px solid #4c4cff; /* 枠線の色 */
     border-radius: 15px;       /* 角の丸み */
     padding: 15px;            /* 内側の余白 */
-    margin: 30px;           /* 外側の余白 */
+    margin: 20px 60px;           /* 外側の余白 */
     background-color: #f0f4ff; /* 背景色 */
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* 影 */
-    font-family: "Arial", sans-serif; /* フォント */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7); /* 影 */
+    text-align: left; /* 左寄せ */
 }
 
 /* タイトル部分（アクセント付き） */
@@ -45,7 +45,70 @@ padding: 30px;
 .beamer-box-content {
     color: #333; /* テキストの色 */
     line-height: 1.6; /* 行間 */
+    padding: 10px 40px;  /* 内側の余白 */
+}
+
+/* 要素を左右に分割 */
+.flex-container {
+    display: flex;
+}
+.flex-item {
+    flex: 1;
+}
+
+/* 文章部分 */
+.content {
+    padding: 15px;            /* 内側の余白 */
+    margin: 20px 60px;           /* 外側の余白 */
+    text-align: left;          /* 左寄せ */
+}
+/* 注釈 */
+.anotation {
+    font-size: 18px;
+    margin: 20px 0px 0px 0px;
 }
 
 
 
+.table_design08 {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 25px;
+  width: calc(100% - 120px);
+  margin: 20px auto;
+  table-layout: fixed;
+}
+.table_design08 th, .table_design08 td {
+  border: 2px solid #d2e8f1;
+  padding: 10px 0px;
+}
+.table_design08 thead th {
+  background-color: #4d9bc1;
+  color: #fff;
+  border: 2px solid #4d9bc1;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+.table_design08 thead th:last-of-type {
+  border-right: 2px solid #4d9bc1;
+}
+.table_design08 tbody th {
+  color: #4d9bc1;
+  font-weight: bold;
+}
+th:first-child {
+  border-top-left-radius: 15px; /* 左上の角を丸くする */
+}
+th:last-child {
+  border-top-right-radius: 15px; /* 右上の角を丸くする */
+}
+td:first-child:last-child {
+  border-bottom-left-radius: 15px; /* 左下の角を丸くする */
+  border-bottom-right-radius: 15px; /* 右下の角を丸くする */
+}
+.txt {
+  width: 350px;
+}

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Python①</title>
+		<title>Python1</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -51,139 +51,1182 @@
 
 
 
+
+
+
+
 <section class="wholeMargin">
 	<!--#/0/0-->
-	<pre>
-	<code class="python withTitle" data="Hello">
-from manim import *
-
-class DoubleSquare(Scene):
-	def construct(self):
-		square1 = Square(color = BLUE)
-		square2 = Square(color = RED)
-		circle = Circle(color = GREEN)</code>
-	</pre>
+	<h1>Python講座①</h1>
+	<h2>変数・イテラブルオブジェクト</h2>
 </section>
 
-<section class="wholeMargin">
-	<!--#/1/0-->
-    <h2>変数・関数</h2>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
-	縦に長い<br>
+<section>
+	<section class="wholeMargin">
+		<!--#/1/0-->
+		<h2>Pythonの基本構造</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/1/1-->
+		<h3>式と文</h3>
+		<div class="content">
+			Pythonでは、値を生成するものを「<strong>式</strong>」処理を実行するものを「<strong>文</strong>」と呼ぶ。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">例（式と文）</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul>
+							&lt; 式 &gt;
+							<code>
+								<li>24</li>
+								<li>3 + 7</li>
+								<li>"apple"</li>
+								<li>[2, 3, 5, 7]</li>
+								<li>len(list)</li>
+								<li>score &lt;= 10</li>
+						    </code>
+					    </ul>
+					</div>
+					<div class ="flex-item">
+						<ul>
+							&lt; 文 &gt;
+						    <code>
+								<li>score = 24</li>
+								<li>return 3 + 7</li>
+								<li>print("apple")</li>
+								<li>list.append(11)</li>
+								<li>if score &lt;= 10:<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;pass</li>
+						    </code>
+					    </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/1/2-->
+		<h3>インデント</h3>
+		<div class="content">
+		if・while・for・def 文などにおいて、それぞれのまとまりを作るために行頭に空白を入れて字下げを行う事を<strong>インデント</strong>という。<br>
+		インデントは原則<strong>半角スペース4つ分</strong>で行う。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（インデント）">
+while True:
+    hoge += 1    # この行の初めに、半角スペース４つがある</code>
+			</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/1/3-->
+		<h3>コメント</h3>
+		<div class="content">
+			「#」から行末までは<strong>コメント</strong>とみなされ、Pythonの文とは解釈されずに無視される。<br>
+			プログラム内に説明や注釈を追加するためのメモのようなもの。
+		</div>
+		<pre>
+		<code class="python withTitle" data="例（コメント）">
+# 素数判定関数
+def is_prime(i):
+    if i <= 1:                            # 1以下ならば素数でない
+        return False
+    for j in range(2, int(i**0.5) + 1):   # 順に割って割り切れたら素数でない
+        if i % j == 0:
+            return False
+    return True                           # そうでなければ素数</code>
+		</pre>
+	</section>
 </section>
 
-<section class="wholeMargin">
-	<!--#/2/0-->
-    横に長い横に長い横に長い横に長い横に長い横に長い横に長い横に長い横に長い横に長い横に長い横に長い横に長い
+<section>
+	<section class="wholeMargin">
+		<!--#/2/0-->
+		<h2>出力と入力</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/2/1-->
+		<h3>標準出力と標準入力</h3>
+		<div class="content">
+		最も一般的である、画面への出力を標準出力、キーボードからの入力を標準入力という。
+		Pythonでは、標準出力のための<code><strong> print関数 </strong></code>、標準入力のための<code><strong> input関数 </strong></code>、が用意されている。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/2/2-->
+		<h3>print 関数</h3>
+		<pre>
+			<code class="python withTitle" data="定義（print関数）">
+def print(
+    *objects: object,
+    sep: str = " ",
+    end: str = "\n"
+) -> None</code>
+		</pre>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>引数</th>
+					<th>型</th>
+					<th>初期値</th>
+					<th class="txt">説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>*objects</td>
+					<td>object</td>
+					<td></td>
+					<td>表示したいオブジェクト</td>
+				</tr>
+				<tr>
+					<td>sep</td>
+					<td>str</td>
+					<td>" "</td>
+					<td>区切り文字</td>
+				</tr>
+				<tr>
+					<td>end</td>
+					<td>str</td>
+					<td>"\n"</td>
+					<td>末尾に付ける文字</td>
+				</tr>
+			</tbody>
+		</table>
+				
+		<div class="content">
+			コンマ区切りで指定された *objects の区切り文字を sep にし、末尾に end を付け加えた文字列を表示する
+			<div class="anotation">
+				※「*」は可変長引数を意味する記号である。任意の数の引数をコンマ区切りで渡すことができる。<br>
+				※「\n」は改行を意味するエスケープシーケンスである。環境によってはバックスラッシュ「\」が日本円記号「¥」と表示される場合がある。
+			</div>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（print関数）">
+print("apple")                              # apple
+print("app", "le")                          # app le
+print("app", "le", sep = "-")               # app-le
+print("b", "n", "na", sep = "a")            # banana
+print("b", "n", "n", sep = "a", end = "a"   # banana
+print("a", "b", "c", sep = "-", end = "!")  # a-b-c!</code>
+			</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/2/3-->
+		<h3>input 関数</h3>
+		<pre>
+			<code class="python withTitle" data="定義（input関数）">
+def input(
+    prompt: object = ""
+) -> str</code>
+		</pre>		
+		<div class="content">
+			prompt を表示した後に、キーボードからの入力を受け取り、それを返す
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（print関数）">
+print(input())                    # ユーザーの入力を表示
+print(input("あなたの名前は？"))      # ユーザーの名前を聞いてから入力させてそれを表示</code>
+			</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/2/4-->
+		<h3>練習問題（print関数）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（print関数）">
+(1)　print("d","st","ngu","sh", sep="i")
+(2)　print("流加", "陽翔", "正路", "永井", sep="も", end="も合格！")</code>
+		</pre>
+	</section>
 </section>
 
 <section>
 	<section class="wholeMargin">
 		<!--#/3/0-->
-        <ul>
-			<li>No order here</li>
-			<li>Or here</li>
-			<li>Or here</li>
-			<li>Or here</li>
-		</ul>
+		<h2>型とリテラル</h2>
 	</section>
-    
 	<section class="wholeMargin">
 		<!--#/3/1-->
-        <ol>
-			<li>One is smaller than...</li>
-			<li>Two is smaller than...</li>
-			<li>Three!</li>
-		</ol>
+		<h3>オブジェクト</h3>
+		<div class="content">
+			Pythonでは、値を持つものを全て<strong>オブジェクト</strong>という。
+			全てのオブジェクトは「値」と「<strong>データ型</strong>」と「ID」を持っている。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">例（オブジェクト）</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>数値</li>
+							<li>文字列</li>
+							<li>真偽値</li>
+							<li>リスト</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>変数</li>
+							<li>関数</li>
+							<li>クラス</li>
+							<li>インスタンス</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">例（データ型）</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>int</li>
+							<li>float</li>
+							<li>atr</li>
+							<li>bool</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>list</li>
+							<li>tuple</li>
+							<li>dictionary</li>
+							<li>function</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<h3>リテラル</h3>
+		<div class="content">
+			プログラム内で直接記述される値を<strong>リテラル</strong>という。
+			以降、初歩的なリテラルを紹介していく。
+		</div>
 	</section>
-
 	<section class="wholeMargin">
 		<!--#/3/2-->
-        <h2>変数・関数</h2>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
-		縦に長い<br>
+		<h3>数値リテラル</h3>
+		<div class="content">
+			Pythonでは、数値型は全部で３つあり、<strong>整数(int)</strong>、<strong>浮動小数点数(float)</strong>、<strong>複素数(complex)</strong>である。
+			「int」は「integral」の略である。
+			複素数リテラルを表す場合、虚数単位は「j」を用いる。また、数値リテラルに含まれるアンダースコア「_」は無視される。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">例（数値リテラル）</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							&lt; int &gt;
+							<li>24</li>
+							<li>-3735</li>
+							<li>0</li>
+							<li>-13_44_68</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							&lt; float &gt;
+							<li>23.364</li>
+							<li>0.0</li>
+							<li>-0.34_35</li>
+							<li>-5.0</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							&lt; complex &gt;
+							<li>4j</li>
+							<li>3-7j</li>
+							<li>0j</li>
+							<li>31_56-44_82j</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
-
 	<section class="wholeMargin">
 		<!--#/3/3-->
-        <table>
+		<h3>文字列リテラル</h3>
+		<div class="content">
+			<strong>文字列型(str)</strong> は「string」の略である。文字列リテラルを表す場合、表示したい文字をシングルクォーテーション「'」またはダブルクォーテーション「"」で囲む。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">例（文字列リテラル）</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>"apple"</li>
+							<li>'B'</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>'円周率'</li>
+							<li>"山田"</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>"3872"</li>
+							<li>"1+1"</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/3/4-->
+		<h3>真偽値リテラル</h3>
+		<div class="content">
+			<strong>真偽値型(bool)</strong> は「<strong>True</strong>」または「<strong>False</strong>」のどちらかの値のみを持つ。
+			「bool」は「boolean」の略である。
+			「True」は「真」を意味し、「False」は「偽」を意味する。
+			「True」と「False」はそれぞれ真偽値型のリテラルである。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/3/5-->
+		<h3>NoneTypeリテラル</h3>
+		<div class="content">
+			NoneType型は「<strong>None</strong>」のみの値を持つ。
+			「None」は存在しないことを表す。
+			「None」はNoneType型のリテラルである。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/3/6-->
+		<h3>type 関数</h3>
+		<div class="content">
+			Pythonでは、オブジェクトの型を調べるための関数として<strong> type関数 </strong>が用意されている。
+		</div>
+		<pre>
+			<code class="python withTitle" data="定義（type関数）">
+def type(
+    object: object
+) -> type          # 入力したobjectの型が返される</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（type関数）">
+print(type(5))          # &lt;class 'int'&gt;
+print(type("i"))        # &lt;class 'str'&gt;
+print(type(8.26))       # &lt;class 'float'&gt;
+print(type(True))       # &lt;class 'bool'&gt;
+</code>
+			</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/3/7-->
+		<h3>練習問題（type関数）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（print関数）">
+(1)　print(type(34-2j))
+(2)　print(type("92"))
+(3)　print(type(False))
+(4)　print(type(None))
+(5)　print(type(35.34_68))</code>
+		</pre>
+	</section>
+</section>
+
+<section>
+	<section class="wholeMargin">
+		<!--#/4/0-->
+		<h2>数値型</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/1-->
+		<h3>数値の生成</h3><br>
+		<h4>文字列から数値の生成</h4>
+		<div class="content">
+			各コンストラクタを用いることにより、文字列型で表された数値を数値型に変換することができる。
+			<div class="anotation">
+				※コンストラクタとは、型（クラス）の名前と等しい名前の関数のことである。この関数は特殊な意味を持つ。
+			</div>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（文字列→数値）">
+print(int("34"))               # 34
+print(float("64.32"))          # 64.32
+print(complex("23+93j"))       # 23+93j</code>
+		</pre>
+		<br>
+		<h4>実部・虚部から複素数の生成</h4>
+		<div class="content">
+			complexコンストラクタを用いて、第一引数に実部を、第二引数に虚部を入れることで複素数を生成できる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="定義（complexコンストラクタ）">
+def complex(
+    real: int | float = 0     # 「|」は「または」の意
+    imag: int | float = 0     # 「|」は「または」の意
+) -> complex</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（複素数の生成）">
+print(complex(2, 4))          # 2+4j
+print(complex(7.3, 8.4))      # 7.3+8.4j</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/2-->
+		<h3>数値型における算術演算子</h3>
+		<div class="content">
+			数値型に対して以下の<strong>算術演算子</strong>を用いることで、基本的な演算を行うことができる。
+		</div>
+		<table class="table_design08">
 			<thead>
 				<tr>
-					<th>Item</th>
-					<th>Value</th>
-					<th>Quantity</th>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>Apples</td>
-					<td>$1</td>
-					<td>7</td>
+					<td>a + b</td>
+					<td>加算</td>
+					<td>a // b</td>
+					<td>切り捨て除算</td>
 				</tr>
 				<tr>
-					<td>Lemonade</td>
-					<td>$2</td>
-					<td>18</td>
+					<td>a - b</td>
+					<td>減算</td>
+					<td>a % b</td>
+					<td>剰余算</td>
 				</tr>
 				<tr>
-					<td>Bread</td>
-					<td>$3</td>
-					<td>2</td>
+					<td>a * b</td>
+					<td>乗算</td>
+					<td>a ** b</td>
+					<td>べき乗</td>
+				</tr>
+				<tr>
+					<td>a / b</td>
+					<td>除算</td>
+					<td></td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>
+		<pre>
+			<code class="python withTitle" data="例（数値型の算術演算）">
+print(8 + 5)      # 13
+print(8 - 5)      # 3
+print(8 * 5)      # 40
+print(8 / 5)      # 1.6
+print(8 // 5)     # 1
+print(8 % 5)      # 3
+print(8 ** 5)     # 32768</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/3-->
+		<h3>数値型における比較演算子</h3>
+		<div class="content">
+			int または float に対して以下の<strong>比較演算子</strong>を用いると、真ならばTrue、偽ならばFalseが返される。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>a &gt; b</td>
+					<td>aがbより大きい</td>
+					<td>a &gt;= b</td>
+					<td>aはb以上</td>
+				</tr>
+				<tr>
+					<td>a &lt; b</td>
+					<td>aがbより小さい</td>
+					<td>a &lt;= b</td>
+					<td>aはb以下</td>
+				</tr>
+				<tr>
+					<td>a == b</td>
+					<td>aとbは等しい</td>
+					<td>a != b</td>
+					<td>aとbは等しくない</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（数値型の比較演算）">
+print(2 > 3)      # False
+print(2 < 3)      # True
+print(2 >= 3)     # False
+print(2 <= 3)     # True
+print(2 == 3)     # False
+print(2 != 3)     # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/4-->
+		<h3>数値演算の中での真偽値</h3>
+		<div class="content">
+			数値演算の中で、Trueは１、Falseは０として扱われる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（数値演算の中での真偽値）">
+print(4.2 + True)      # 5.2
+print(-3.8 - False)    # -3.8
+print(True * 5)        # 5
+print(True == 1)       # True
+print(3 <= True)       # False
+print(2 != False)      # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/4-->
+		<h3>演算子の優先順位</h3>
+		<div class="content">
+			演算子には以下のような優先順位がある。
+			表の上が優先順位が高く、下に行くにつれて低くなる。
+			同じ優先度の演算では、左から右に演算が行われる。
+			また、カッコを付けることでその部分を優先的に演算できる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>演算子</th>
+					<th>説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>**</td>
+					<td>べき乗</td>
+				</tr>
+				<tr>
+					<td>+x , -x</td>
+					<td>正数、負数</td>
+				</tr>
+				<tr>
+					<td>* , / , // , %</td>
+					<td>乗算、除算、切り捨て除算、剰余算</td>
+				</tr>
+				<tr>
+					<td>+ , -</td>
+					<td>加算、減算</td>
+				</tr>
+				<tr>
+					<td>> , < , >= , <= , == , !=</td>
+					<td>比較</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（演算子の優先順位）">
+print(2+3*-2**2)                       # -10
+print(3**2%6+3/2)                      # 4.5
+print(2*-3*-4-3**2)                    # 15
+print(2*3-4*5>2-3**2)                  # False
+print((2+3)*2**3//6<=4-2*(3-2)+4)      # True
+print(-((4-3)*3)**2>=3*7%3*(4-2))      # False</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/5-->
+		<h3>数値に関する関数</h3>
+		<div class="content">
+			abs関数：引数に渡した数値の絶対値を返す。
+		</div>
+		<pre>
+			<code class="python withTitle" data="定義（abs関数）">
+def abs(
+    x: number
+) -> number</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（abs関数）">
+print(abs(2))        # 2
+print(abs(-5.2))     # 5.2
+print(abs(1+1j))     # 1.41421356…</code>
+		</pre>
+		<div class="content">
+			round関数：第一引数に渡した数値を第二引数で指定した小数の位で丸め込む。
+			第二引数が無い場合は整数に丸め込む。
+			<div class="anotation">
+				※丸め込みは四捨五入に似たようなものだが、厳密には異なる。
+			</div>
+		</div>
+		<pre>
+			<code class="python withTitle" data="定義（round関数）">
+def round(
+    number: number,
+    ndigits: int = None
+) -> number</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（round関数）">
+print(round(2.32))        # 2      (整数)
+print(round(-1.387, 2))   # -1.39  (小数第二位)
+print(round(71.31, 1))    # 71.3   (小数第一位)
+print(round(3587, -2))    # 3600   (百の位)</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/4/6-->
+		<h3>練習問題（数値型）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（数値型）">
+(1)　print(float("3.14")+round(12.18))
+(2)　print(complex(2,7)-complex(4,3))
+(3)　print(abs(3-5*2)+2*-3!=True)
+(4)　print(abs(-4**2%5*2)//abs(True*3**2+3*-4),abs(-4**2%5*2)%abs(True*3**2+3*-4),sep="あまり")
+(5)　print(round(float("293.3911")-100,(3==2)*2+2))</code>
+		</pre>
 	</section>
 </section>
 
-<section class="wholeMargin">
-	<!--#/4/0-->
-    <p>
-		You can link between slides internally,
-		<a href="#/2/1">like this</a>.
-	</p>
+<section>
+	<section class="wholeMargin">
+		<!--#/5/0-->
+		<h2>文字列型</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/1-->
+		<h3>文字列の生成</h3>
+		<div class="content">
+			コンストラクタを用いて様々なオブジェクトを文字列型に変換できる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（文字列の生成）">
+print(str(24))            # 24
+print(str(34.2))          # 34.2
+print(str(True))          # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/2-->
+		<h3>エスケープシーケンス</h3>
+		<div class="content">
+			文字を出力する際に、改行などの特殊な制御を行う記号を<strong>エスケープシーケンス</strong>という。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>\n</td>
+					<td>改行</td>
+					<td>\\</td>
+					<td>バックスラッシュ</td>
+				</tr>
+				<tr>
+					<td>\t</td>
+					<td>タブ</td>
+					<td>\'</td>
+					<td>シングルクォート</td>
+				</tr>
+				<tr>
+					<td>\b</td>
+					<td>バックスペース</td>
+					<td>\"</td>
+					<td>ダブルクォート</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（エスケープシーケンス）">
+print("Hello\tWorld")            # Hello	World
+print("It\'s my pen.")           # It's my pen.
+print("Hello\bWorld")            # HellWorld</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/3-->
+		<h3>文字列型における算術演算子</h3>
+		<div class="content">
+			文字列型に対して以下の算術演算子を用いることができる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>str + str</td>
+					<td>文字列の結合</td>
+					<td>str * int</td>
+					<td>文字列を繰り返す</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（文字列型における算術演算子）">
+print("Apple" + "Pen")       # ApplePen
+print("Apple" * 3)           # AppleAppleApple</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/4-->
+		<h3>文字列型における比較演算子</h3>
+		<div class="content">
+			文字列型に対して比較演算子を用いるときには、辞書で単語が並ぶ順番と同じように（初めの１文字目から順に）大小を比較する。
+		</div>
+		<ol>
+			<li> 数字は０が最小、９が最大</li>
+			<li> アルファベットは a が最小、z が最大</li>
+			<li> 数字 < 大文字 < 小文字</li>
+		</ol>
+		<pre>
+			<code class="python withTitle" data="例（文字列型における比較演算子）">
+print("123" < "456")          # True
+print("apple" < "banana")     # True
+print("string" < "strong")    # True
+print("Apple" < "apple")      # True
+print("123" < "Apple")        # True
+print("apple" == "apple")     # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/5-->
+		<h3>メソッド</h3>
+		<div class="content">
+			それぞれの型に特有の関数のことを<strong>メソッド</strong>という。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">関数とメソッドの使い方の違い</div>
+			<div class="beamer-box-content">
+					　　関数の使い方： 関数名 ( 対象のオブジェクト )<br>
+					　　　　　　　例： abs ( 4+3j )<br>
+					　　　　　　説明： 4+3j の絶対値を取得<br>
+				<br>
+					メソッドの使い方： 対象のオブジェクト . メソッド名()<br>
+					　　　　　　　例： 4+3j . conjugate()<br>
+					　　　　　　説明： 4+3j の共役な複素数を取得
+			</div>
+		</div>
+		<div class="content">
+			関数：関数に対して対象のオブジェクトを渡す<br>
+			メソッド：対象のオブジェクトに対してメソッドを適用する
+		</div>
+		<div class="content">
+			以降、文字列型のメソッドを紹介していく。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/6-->
+		<h3>文字列の置換</h3>
+		<pre>
+			<code class="python withTitle" data="定義（replaceメソッド）">
+def replace(
+    old: str,      # 置換したい元の文字列
+    new: str       # 置換後の文字列
+) -> str</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（replaceメソッド）">
+print("Hello World".replace("World", "Python"))
+# Hello Python
+
+print("Yamada Taro".replace("Yamada", "Tanaka"))
+# Tanaka Taro</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/7-->
+		<h3>部分文字列の判定</h3>
+		<div class="content">
+			指定した文字列で始まる（終わる）ならばTrue、そうでなければFalseを返す。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>メソッド</th>
+					<th>条件</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>startswith</td>
+					<td>指定した文字列で始まる</td>
+				</tr>
+				<tr>
+					<td>endswith</td>
+					<td>指定した文字列で終わる</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python">print("Hello World".startwith("Hello"))    # True
+print("Hello World".endswith("World"))     # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/8-->
+		<h3>部分文字列の検索</h3>
+		<div class="content">
+			指定した文字列が最初に（最後に）現れる位置を表示。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>メソッド</th>
+					<th>検索条件</th>
+					<th>無い場合</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>find</td>
+					<td>最初</td>
+					<td>-1を返す</td>
+				</tr>
+				<tr>
+					<td>rfind</td>
+					<td>最後</td>
+					<td>-1を返す</td>
+				</tr>
+				<tr>
+					<td>index</td>
+					<td>最初</td>
+					<td>ValueErrorを返す</td>
+				</tr>
+				<tr>
+					<td>rindex</td>
+					<td>最後</td>
+					<td>ValueErrorを返す</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python">print("Hello World".find("o"))     # 4
+print("Hello World".find("a"))     # -1
+print("Hello World".rfind("o"))    # 7
+print("Hello World".rfind("a"))    # -1
+print("Hello World".index("o"))    # 4
+print("Hello World".indes("a"))    # ValueError
+print("Hello World".rindex("o"))   # 7
+print("Hello World".rindex("a"))   # ValueError</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/9-->
+		<h3>文字列構成の判定</h3>
+		<div class="content">
+			文字列が次の条件を満たしていたらTrue、そうでなければFalseを返す。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>メソッド</th>
+					<th>条件</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>isalnum</td>
+					<td>アルファベットまたは数字のみ</td>
+				</tr>
+				<tr>
+					<td>isalpha</td>
+					<td>アルファベットのみ</td>
+				</tr>
+				<tr>
+					<td>isdigit</td>
+					<td>数字のみ</td>
+				</tr>
+				<tr>
+					<td>islower</td>
+					<td>小文字のみ</td>
+				</tr>
+				<tr>
+					<td>isupper</td>
+					<td>大文字のみ</td>
+				</tr>
+				<tr>
+					<td>isspace</td>
+					<td>空白文字のみ</td>
+				</tr>
+				<tr>
+					<td>istitle</td>
+					<td>各単語の１文字目のみが大文字</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python">print("y9E8hzKc".isalnum())    # True
+print("zNcRFfJi".isalpha())    # True
+print("53674289".isdigit())    # True
+print("tbjzyrqi".islower())    # True
+print("NVTPKLZH".isupper())    # True
+print(" \n  \t ".isspace())    # True
+print("The Idea".istitle())    # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/10-->
+		<h3>文字列の変換</h3>
+		<div class="content">
+			文字列を次の条件にしたがって変換する。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>メソッド</th>
+					<th>条件</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>capitalize</td>
+					<td>初め１文字目のみ大文字</td>
+				</tr>
+				<tr>
+					<td>title</td>
+					<td>各単語の１文字目のみ大文字</td>
+				</tr>
+				<tr>
+					<td>upper</td>
+					<td>すべて大文字</td>
+				</tr>
+				<tr>
+					<td>lower</td>
+					<td>すべて小文字</td>
+				</tr>
+				<tr>
+					<td>swapcase</td>
+					<td>大文字と小文字を反転</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python">
+print("Hello WORLD".capitalize())    # Hello world
+print("Hello WORLD".title())         # Hello World
+print("Hello WORLD".upper())         # HELLO WORLD
+print("Hello WORLD".lower())         # hello world
+print("Hello WORLD".swapcase())      # hELLO world</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/5/11-->
+		<h3>練習問題（文字列型）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（文字列型）">
+(1)　print(str(3.14)*3+str(True))
+(2)　print(str("client">"climate").swapcase())
+(3)　print("Tanaka\nJiro".replace("jiro", "taro"))
+(4)　print(str("W5gpuCMz".isdigit())+"\b")
+(5)　print("decrease".find("e")+"decrease".rfind("e"))</code>
+		</pre>
+	</section>
 </section>
 
-<section class="wholeMargin">
-	<!--#/5/0-->
-    <div class="beamer-box">
-		<div class="beamer-box-title">定理 1</div>
-		<div class="beamer-box-content">
-			これはBeamer風のボックスです。<br>
-			必要に応じてリストや表をここに追加できます。
+<section>
+	<section class="wholeMargin">
+		<!--#/6/0-->
+		<h2>真偽値型</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/6/1-->
+		<h3>真偽値の生成</h3>
+		<div class="content">
+			コンストラクタを用いて様々なオブジェクトを真偽値型に変換できる。
+			次のいずれかに該当すればFalse、しなければTrueが返される。<br>
+			<br>
+			<ul>
+				<li>偽であると定義されている定数：False、None</li>
+				<li>数値型におけるゼロ：0、0.0、0j</li>
+				<li>空のイテラブルオブジェクト：( )、[ ]、{ }、set( )、range(0)</li>
+			</ul>
 		</div>
-	</div>
+		<pre>
+			<code class="python withTitle" data="例（真偽値の生成）">
+print(bool(24))            # True
+print(bool(0.0))           # False
+print(bool(None))          # False
+print(bool(3.74))          # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/6/2-->
+		<h3>論理演算子</h3>
+		<div class="content">
+			真偽値の演算を行うときには<strong>論理演算子</strong>を用いる。
+			真ならば True、偽ならば False が返される。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>x or y</td>
+					<td>少なくとも一方がTrue</td>
+				</tr>
+				<tr>
+					<td>x and y</td>
+					<td>x, y 共にTrue</td>
+				</tr>
+				<tr>
+					<td>not x</td>
+					<td>x がFalse</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（論理演算）">
+print(True or True)        # True
+print(True or False)       # True
+print(False or True)       # True
+print(False or False)      # False
+
+print(True and True)       # True
+print(True and False)      # False
+print(False and True)      # False
+print(False and False)     # False
+
+print(not True)            # False
+print(not False)           # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/6/3-->
+		<h3>演算子の優先順位</h3>
+		<div class="content">
+			先ほどの演算子の優先順位の表に論理演算子を加えると以下のようになる。表の上の方が優先度が高い。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>演算子</th>
+					<th>説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>**</td>
+					<td>べき乗</td>
+				</tr>
+				<tr>
+					<td>+x , -x</td>
+					<td>正数、負数</td>
+				</tr>
+				<tr>
+					<td>* , / , // , %</td>
+					<td>乗算、除算、切り捨て除算、剰余算</td>
+				</tr>
+				<tr>
+					<td>+ , -</td>
+					<td>加算、減算</td>
+				</tr>
+				<tr>
+					<td>> , < , >= , <= , == , !=</td>
+					<td>比較</td>
+				</tr>
+				<tr>
+					<td>not x</td>
+					<td>論理演算子 not</td>
+				</tr>
+				<tr>
+					<td>and</td>
+					<td>論理演算子 and</td>
+				</tr>
+				<tr>
+					<td>or</td>
+					<td>論理演算子 or</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（演算子の優先順位）">
+print(not 3 + 2 >= -3 + 2 * 2 ** 2 and "a" == "a")   # False
+print(True or 2 ** 2 == 4 and not True)              # True
+print("a" > "2" and 3 * 2 <= 4 ** 2 // 3 and True)   # False
+print(not abs(-2) < 1 and 3 * 5 != 4 ** 2 - 1)       # False
+print(not False and False or True and not False)     # True
+print(5-2 == -abs(2-5) or False or not "The"<"the")  # False</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/6/4-->
+		<h3>比較演算子の連鎖</h3>
+		<div class="content">
+			比較演算子は任意に連鎖できる。<br>
+			「<code>x < y < z</code>」は、「<code>x < y and y < z</code>」と同じ意味。<br>
+			「<code>x < y > z</code>」は、「<code>x < y and y > z</code>」と同じ意味。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（比較演算子の連鎖）">
+print(1 < 2 < 3)           # True
+print(3 > 6 > 5)           # False
+print(1 <= 2 <= 3)         # True
+print(5 <= 8 > 9)          # False
+print(1.2 > 0.0 <= 3.5)    # True
+print(5.2 >= -3 < -6.2)    # False
+print(2.3 == 2.3 < 5.7)    # True
+print(2.5 < 0.2 == 0.2)    # False</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/6/5-->
+		<h3>練習問題（真偽値型）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（真偽値型）">
+(1)　print(bool(3.0) and bool(4 % 3 - 1) or False)
+(2)　print(2*4-3>=2*bool(0j)&lt;2*(True + bool(1)))
+(3)　print("capture">"captain" and not 2*-3**2!=18)
+(4)　print(bool(None) or 3%3+9<=3*3<=3**2 and True)
+(5)　print(not "2"<"a"<"A" and (2+5)*3//5==abs(-2**2))</code>
+		</pre>
+	</section>
 </section>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
