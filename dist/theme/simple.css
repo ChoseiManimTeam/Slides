@@ -11,6 +11,12 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   color: #fff;
 }
 
+@font-face {
+  font-family: "myfont";
+  src: url("../../plugin/highlight/SourceHanCodeJP-Regular.otf") format("truetype");
+  font-display: swap;
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -149,11 +155,16 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .reveal ol,
-.reveal dl,
 .reveal ul {
   display: inline-block;
   text-align: left;
   margin: 0 0 0 1em;
+}
+
+.reveal dl {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 0;
 }
 
 .reveal ol {
@@ -185,7 +196,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .reveal dd {
-  margin-left: 40px;
+  margin: 0 0 15px 40px;
 }
 
 .reveal blockquote {
@@ -221,7 +232,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 }
 
 .reveal code {
-  font-family: var(--r-code-font);
+  font-family: 'myfont';
   text-transform: none;
   tab-size: 2;
 }
@@ -300,10 +311,6 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal small * {
   vertical-align: top;
-}
-
-.reveal img {
-  margin: var(--r-block-margin) 0;
 }
 
 /*********************************************

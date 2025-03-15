@@ -1,6 +1,6 @@
-import {KaTeX} from "./katex";
-import {MathJax2} from "./mathjax2";
-import {MathJax3} from "./mathjax3";
+import {KaTeX} from "./katex.js";
+import {MathJax2} from "./mathjax2.js";
+import {MathJax3} from "./mathjax3.js";
 
 const defaultTypesetter = MathJax2;
 
