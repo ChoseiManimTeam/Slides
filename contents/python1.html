@@ -184,10 +184,12 @@ def print(
 				
 		<div class="content">
 			コンマ区切りで指定された *objects の区切り文字を sep にし、末尾に end を付け加えた文字列を表示する。
-			<div class="anotation">
-				※「*」は可変長引数を意味する記号である。任意の数の引数をコンマ区切りで渡すことができる。<br>
-				※「\n」は改行を意味するエスケープシーケンスである。環境によってはバックスラッシュ「\」が日本円記号「¥」と表示される場合がある。
-			</div>
+			<p>
+				<div class="anotation">
+					※「*」は可変長引数を意味する記号である。任意の数の引数をコンマ区切りで渡すことができる。<br>
+					※「\n」は改行を意味するエスケープシーケンスである。環境によってはバックスラッシュ「\」が日本円記号「¥」と表示される場合がある。
+				</div>
+			</p>
 		</div>
 		<pre>
 			<code class="python withTitle" data="例（print関数）">
@@ -414,7 +416,7 @@ print(type(True))       # &lt;class 'bool'&gt;
 			次のコードを実行したときに、それぞれ画面には何が表示されるか？
 		</div>
 		<pre>
-			<code class="python withTitle" data="問題（print関数）">
+			<code class="python withTitle" data="問題（type関数）">
 (1)　print(type(34-2j))
 (2)　print(type("92"))
 (3)　print(type(False))
@@ -434,7 +436,7 @@ print(type(True))       # &lt;class 'bool'&gt;
 		<!--#/4/1-->
 		<h3>整数の生成</h3>
 		<div class="content">
-			intコンストラクタの引数にfloat型の値を入れると、その値を切り捨ててできた整数が生成できる。
+			<p>intコンストラクタの引数にfloat型の値を入れると、その値を切り捨ててできた整数が生成できる。</p>
 			<div class="anotation">
 				※コンストラクタとは、型（クラス）の名前と等しい名前の関数のことである。この関数は特殊な意味を持つ。
 			</div>
@@ -495,9 +497,7 @@ def complex(
 print(complex(-2, 4))          # -2+4j
 print(complex(7.3, 8.4))       # 7.3+8.4j
 print(complex(3))              # 3+0j
-print(complex(-19.5))          # -19.5+0j
-print(complex(0, -2))          # -2j
-print(complex(0, 45.6))        # 45.6j</code>
+print(complex(0, -2))          # -2j</code>
 		</pre>
 		<div class="content">
 			complexコンストラクタの引数に複素数を表すstr型の値を入れると、その複素数が生成できる。
@@ -691,7 +691,7 @@ print(-((4-3)*3)**2>=3*7%3*(4-2))      # False</code>
 		<!--#/4/9-->
 		<h3>数値に関する関数</h3>
 		<div class="content">
-			abs関数：引数に渡した数値の絶対値を返す。
+			<strong>abs関数</strong>：引数に渡した数値の絶対値を返す。
 		</div>
 		<pre>
 			<code class="python withTitle" data="例（abs関数）">
@@ -700,11 +700,13 @@ print(abs(-5.2))     # 5.2
 print(abs(3+4j))     # 5.0</code>
 		</pre>
 		<div class="content">
-			round関数：第一引数に渡した数値を第二引数で指定した小数の位で丸め込む。
+			<strong>round関数</strong>：第一引数に渡した数値を第二引数で指定した小数の位で丸め込む。
 			第二引数が無い場合は整数に丸め込む。
-			<div class="anotation">
-				※丸め込みは四捨五入に似たようなものだが、厳密には異なる。
-			</div>
+			<p>
+				<div class="anotation">
+					※丸め込みは四捨五入に似たようなものだが、厳密には異なる。
+				</div>
+			</p>
 		</div>
 		<pre>
 			<code class="python withTitle" data="定義（round関数）">
@@ -864,17 +866,15 @@ print("apple" == "apple")     # True</code>
 					　　　　　　　例： abs ( 4+3j )<br>
 					　　　　　　説明： 4+3j の絶対値を取得<br>
 				<br>
-					メソッドの使い方： 対象のオブジェクト . メソッド名()<br>
+					メソッドの使い方： 対象のオブジェクト . メソッド名( )<br>
 					　　　　　　　例： 4+3j . conjugate()<br>
 					　　　　　　説明： 4+3j の共役な複素数を取得
 			</div>
 		</div>
 		<div class="content">
-			関数：関数に対して対象のオブジェクトを渡す<br>
+			関数　　：関数に対して対象のオブジェクトを渡す<br>
 			メソッド：対象のオブジェクトに対してメソッドを適用する
-		</div>
-		<div class="content">
-			以降、文字列型のメソッドを紹介していく。
+			<p>以降、文字列型のメソッドを紹介していく。</p>
 		</div>
 	</section>
 	<section class="wholeMargin">
@@ -965,14 +965,14 @@ print("Hello World".endswith("Horizon"))    # False</code>
 			</tbody>
 		</table>
 		<pre>
-			<code class="python">print("Hello World".find("o"))     # 4
-print("Hello World".find("a"))     # -1
-print("Hello World".rfind("o"))    # 7
-print("Hello World".rfind("a"))    # -1
-print("Hello World".index("o"))    # 4
-print("Hello World".index("a"))    # ValueError
-print("Hello World".rindex("o"))   # 7
-print("Hello World".rindex("a"))   # ValueError</code>
+			<code class="python">print("Happy Halloween".find("Ha"))    # 0
+print("Happy Halloween".find("aa"))    # -1
+print("Happy Halloween".rfind("Ha"))   # 6
+print("Happy Halloween".rfind("aa"))   # -1
+print("Happy Halloween".index("Ha"))   # 0
+print("Happy Halloween".index("aa"))   # ValueError
+print("Happy Halloween".rindex("Ha"))  # 6
+print("Happy Halloween".rindex("aa"))  # ValueError</code>
 		</pre>
 	</section>
 	<section class="wholeMargin">
@@ -1598,9 +1598,11 @@ print("こんにちは、" + name + "さん")</code>
 				<li> 「What's your name?」と聞いて名前を取得</li>
 				<li> 「Nice to meeet you, 〇〇!」と表示</li>
 			</ol>
-			<div class="anotation">
-				※　エスケープシーケンスに注意
-			</div>
+			<p>
+				<div class="anotation">
+					※　エスケープシーケンスに注意
+				</div>
+			</p>
 		</div>
 	</section>
 	<section class="wholeMargin">
@@ -1817,7 +1819,7 @@ print("「?」で終わるかどうか：" + str(is_end))</code>
 			<br><br>
 			<strong>ミュータブル</strong>（要素の変更が可能）かどうかによっても分類できる。
 		</div>
-		<img src="SVGImage/collection.svg" width="800" height="480">
+		<img src="../svgImage/collection.svg" width="800" height="480">
 		<div class="content">
 			ミュータブル：赤色　　　イミュータブル：青色
 		</div>
@@ -2133,12 +2135,9 @@ print(70 in {"apple": 120, "lemon": 70})        # False</code>
 	</section>
 	<section class="wholeMargin">
 		<!--#/10/2-->
-		<h3>コレクションに関する関数</h3>
+		<h3>引数にコレクションをとる関数</h3>
 		<div class="content">
 			<strong>len関数</strong>：引数に渡されたコレクションの要素の数を返す。
-			<div class="anotation">
-				※　正確には、collections.abc.Collection を継承しているかどうかではなく、collections.abc.Sized を継承しているかどうかによって、len関数が使えるかどうかが決まる。
-			</div>
 		</div>
 		<pre>
 			<code class="python withTitle" data="例（len関数）">
@@ -2151,10 +2150,29 @@ print(len({'a':1607, 'b':5023, 'c':7835}))    # 3</code>
 	</section>
 	<section class="wholeMargin">
 		<!--#/10/3-->
-		<h3>イテラブルオブジェクトに関する関数</h3>
+		<h3>引数にイテラブルオブジェクトをとる関数</h3>
 		<div class="content">
-			Pythonには、引数にイテラブルオブジェクトを取る関数がいくつか用意されている。
-			以降、それらを紹介していく。
+			以降、これら６つの関数を紹介する。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>sum</li>
+							<li>max</li>
+							<li>min</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>all</li>
+							<li>any</li>
+							<li>sorted</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<section class="wholeMargin">
@@ -2422,6 +2440,732 @@ print(sorted("W3x8U4B2", reverse = True))
 				<li> max, min関数を用いて、要素の最大値・最小値を取得できる。<br>イテラブルオブジェクト、コレクション</li>
 				<li> all, any関数を用いて、要素がTrueであるかを判別できる。<br>イテラブルオブジェクト、コレクション</li>
 				<li> sorted関数を用いて、並び変えた新たなリストを取得できる。<br>イテラブルオブジェクト、コレクション</li>
+			</ol>
+		</div>
+	</section>
+</section>
+
+<section>
+	<section class="wholeMargin">
+		<!--#/11/0-->
+		<h2>シーケンス①</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/1-->
+		<h3>リスト・タプルの生成</h3>
+		<div class="content">
+			リストのコンストラクタを用いて、様々なイテラブルオブジェクトをリスト型に変換できる。
+			dict の場合は、key のみが対象となる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（リストの生成）">
+print(list((2, 3, 5, 7, 11, 13, 17)))
+# [2, 3, 5, 7, 11, 13, 17]
+
+print(list({2, 3, 5, 7, 11, 13, 17}))
+# [2, 3, 5, 7, 11, 13, 17]
+
+print(list("ABCDEFG"))
+# [A, B, C, D, E, F, G]
+
+print(list({'a':100, 'b':200, 'c':300}))
+# [a, b, c]
+</code>
+		</pre>
+		<div class="content">
+			タプルのコンストラクタを用いて、様々なイテラブルオブジェクトをタプル型に変換できる。
+			dict の場合は、key のみが対象となる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（タプルの生成）">
+print(tuple([2, 3, 5, 7, 11, 13, 17]))
+# (2, 3, 5, 7, 11, 13, 17)
+
+print(tuple({2, 3, 5, 7, 11, 13, 17}))
+# (2, 3, 5, 7, 11, 13, 17)
+
+print(tuple("ABCDEFG"))
+# (A, B, C, D, E, F, G)
+
+print(tuple({'a':100, 'b':200, 'c':300}))
+# (a, b, c)
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/2-->
+		<h3>rangeの生成</h3>
+		<div class="content">
+			range コンストラクタを用いて、start, stop, step を指定して range を生成できる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="定義（rangeコンストラクタ）">
+def range(
+    start: int = 0,
+    stop:  int,
+    step:  int = 1
+) -> range</code>
+		</pre>
+		<div class="content">
+			startからstopの一つ手前の数までstepずつ増やした数字を表すrangeを返す。
+		</div>
+		<pre>
+			<code class="python withTitle" data="記法（rangeコンストラクタ）">
+range(stop)
+range(start, stop)
+range(start, stop, step)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（rangeの生成）">
+# これらはrangeをリストに変換したものを表示するプログラムである。
+print(list(range(1)))           # [0]
+print(list(range(4)))           # [0, 1, 2, 3]
+print(list(range(-2)))          # []
+
+print(list(range(2, 5)))        # [2, 3, 4]
+print(list(range(-4, 0)))       # [-4, -3, -2, -1]
+print(list(range(5, 2)))        # []
+
+print(list(range(2, 12, 2)))    # [2, 4, 6, 8, 10]
+print(list(range(13, -27, -8))) # [13, 5, -3, -11, -19]
+print(list(range(4, -9, -3)))   # [4, 1, -2, -5, -8]
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/3-->
+		<h3>添字表記</h3>
+		<div class="content">
+			シーケンスの各要素には初めを０番目として番号が付けられている。これを <strong>index</strong> という。
+			次のように記述することで、index によって要素を取得できる（添字表記）。
+		</div>
+		<pre>
+			<code class="python withTitle" data="記法（添字表記）">
+sequence[n]        # sequenceのindexがn番目の要素を取り出す
+sequence[-n]       # sequenceの後ろからn番目の要素を取り出す</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（添字表記）">
+print([2, 3, 5, 7, 11][2])          # 5
+print((2, 3, 5, 7, 11)[4])          # 11
+print([2, 3, 5, 7, 11][-2])         # 7
+print((2, 3, 5, 7, 11)[-4])         # 3
+print("apple"[0])                   # a
+print("banana"[-2])                 # n
+print(range(-3, 10, 4)[2])          # 5
+print(range(-3, 10, 4)[-1])         # 9</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/4-->
+		<h3>スライス表記</h3>
+		<div class="content">
+			シーケンスの一部分を取得するための仕組みを <strong>スライス</strong> という。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>値</th>
+					<th>初期値</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>start</td>
+					<td>0</td>
+					<td>初めのindexから</td>
+				</tr>
+				<tr>
+					<td>stop</td>
+					<td>len(sequence)</td>
+					<td>それ未満のindexまで</td>
+				</tr>
+				<tr>
+					<td>step</td>
+					<td>1</td>
+					<td>〇個ごとに</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="content">
+			startからstopの一つ手前のindexまでstepごとに要素を取得した同じ型のシーケンスを返す。
+		</div>
+		<pre>
+			<code class="python withTitle" data="記法（スライス表記）">
+sequence[start:stop]
+sequence[start:stop:step]</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（スライス表記）">
+print([2, 3, 5, 7, 11, 13][2:4])    # [5, 7]
+print((2, 3, 5, 7, 11, 13)[0:3])    # (2, 3, 5)
+print("apple"[1:4])                 # ppl
+print(range(-3, 10, 4)[1:3])        # range(1, 9, 4)
+# [-3, 1, 5, 9]                       [1, 5]
+
+print([2, 3, 5, 7, 11, 13][0:5:2])  # [2, 5, 11]
+print((2, 3, 5, 7, 11, 13)[1:6:3])  # (3, 11)
+print("immigrant"[0:7:3])           # iia
+print(range(-5, 8, 2)[2:6:2])       # range(-1, 7, 4)
+# [-5, -3, -1, 1, 3, 5, 7]            [-1, 3]</code>
+		</pre>
+		<div class="content">
+			stepを負の数にすることで、逆順に要素を取り出す事ができる。
+		</div>
+		<pre>
+			<code class="python">print([2, 3, 5, 7, 11, 13][5:2:-1]) # [13, 11, 7]
+print((2, 3, 5, 7, 11, 13)[5:0:-2]) # (13, 7, 3)
+print("perspective"[8:1:-3])        # ier
+print(range(-5, 8, 2)[6:1:-2])      # range(7, -5, -4)
+# [-5, -3, -1, 1, 3, 5, 7]            [7, 3, -1]</code>
+		</pre>
+		<div class="content">
+			start, stop を負の数にすることで、シーケンスの後ろから〇番目の位置を表す。
+		</div>
+		<pre>
+			<code class="python">print([2, 3, 5, 7, 11, 13][-5:-2])   # [3, 5, 7]
+print((2, 3, 5, 7, 11, 13)[-1:1:-2]) # (13, 7)
+print("perspective"[-9:9:3])         # rei
+print(range(-5, 8, 2)[2:-2])         # range(-1, 5, 2)
+# [-5, -3, -1, 1, 3, 5, 7]             [-1, 1, 3]</code>
+		</pre>
+		<div class="content">
+			start, stop を省略することもできる。
+		</div>
+		<pre>
+			<code class="python">print([2, 3, 5, 7, 11, 13][3:])      # [7, 11, 13]
+print((2, 3, 5, 7, 11, 13)[:-2])     # (2, 3, 5, 7)
+print("appropriate"[3::3])           # rrt
+print(range(-5, 8, 2)[::2])          # range(-5, 11, 4)
+# [-5, -3, -1, 1, 3, 5, 7]             [-5, -1, 3, 7]</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/5-->
+		<h3>リスト・タプルにおける算術演算子</h3>
+		<div class="content">
+			リスト・タプルに対して以下の算術演算子を用いることができる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>list + list</td>
+					<td>リストの結合</td>
+					<td>list * int</td>
+					<td>リストの繰り返し</td>
+				</tr>
+				<tr>
+					<td>tuple + tuple</td>
+					<td>タプルの結合</td>
+					<td>tuple * int</td>
+					<td>タプルの繰り返し</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（リスト・タプルにおける算術演算子）">
+print([1, 2, 3] + [4, 5, 6])   # [1, 2, 3, 4, 5, 6]
+print([1, 2, 3] * 2)           # [1, 2, 3, 1, 2, 3]
+print((1, 2, 3) + (4, 5, 6))   # (1, 2, 3, 4, 5, 6)
+print((1, 2, 3) * 2)           # (1, 2, 3, 1, 2, 3)</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/6-->
+		<h3>シーケンスにおける比較演算子</h3>
+        <div class="content">
+			リスト・タプルにおいては、初めの index から順に（辞書で単語が並ぶ順番と同じように）大小を比較する。
+			range においては、等価比較（等しいか等しくないか）は対応しているが、順序比較（大小関係の比較）は対応していない。
+			文字列については前に紹介したので省く。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（シーケンスにおける比較演算子）">
+print([3, 5, 7, 9] < [3, 6, 9])          # True
+print(('2','a','b') > ('2','A','B'))     # True
+print([1, 2, 3] < [1, 2, 3, 4])          # True
+print((3, 6, 9) == (3, 6, 9))            # True
+print(range(0, 9, 3) == range(0 ,7 ,3))  # True
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/7-->
+		<h3>リストの更新</h3>
+		<div class="content">
+			添字表記・スライス表記を用いて、リストを更新することができる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（リストの更新）">
+list = ['a', 'b', 'c', 'd', 'e']
+list[0] = 'x'
+print(list)     # ['x', 'b', 'c', 'd', 'e']
+
+list = ['a', 'b', 'c', 'd', 'e']
+list[3] = 'x'
+print(list)     # ['a', 'b', 'c', 'x', 'e']
+
+list = ['a', 'b', 'c', 'd', 'e']
+list[2:4] = ['x', 'y']
+print(list)     # ['a', 'b', 'x', 'y', 'e']
+
+list = ['a', 'b', 'c', 'd', 'e']
+list[0:2] = ['x', 'y', 'z']
+print(list)     # ['x', 'y', 'z', 'c', 'd', 'e']</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/8-->
+		<h3>リストの要素の削除</h3>
+		<div class="content">
+			<strong>del文</strong> を使うことによってリストの要素を削除できる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（リストの更新）">
+listA = ['a', 'b', 'c', 'd', 'e']
+del listA[0]
+print(listA)     # ['b', 'c', 'd', 'e']
+
+listA = ['a', 'b', 'c', 'd', 'e']
+del listA[3]
+print(listA)     # ['a', 'b', 'c', 'e']
+
+listA = ['a', 'b', 'c', 'd', 'e']
+del listA[2:4]
+print(listA)     # ['a', 'b', 'e']
+
+listA = ['a', 'b', 'c', 'd', 'e']
+del listA[0:2]
+print(listA)     # ['c', 'd', 'e']</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/11/9-->
+		<h3>練習問題（シーケンス①）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（1）">
+tupleA = (2, 3, 5, 7, 11)
+tupleB = tupleA[3:] + tupleA[-4:-5:-1]
+print(tupleB)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（2）">
+tupleA = tuple({2:'a', 3:'b', 5:'c', 7:'d', 11:'e'})
+tupleB = tupleA[:4:2] * tupleA[0]
+print(tupleB)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（3）">
+listA = list(range(15, -15, -5))
+del listA[1::2]
+print(listA)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（4）">
+listA = list("balcony"[::3])
+listA[1:2] = ['a', 'b']
+print(listA)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（5）">
+tupleA = tuple("specialize"[1::4])
+tupleB = tuple("leap"[-1:-5:-1])
+print(tupleA < tupleB)</code>
+		</pre>
+	</section>
+</section>
+
+<section>
+	<section class="wholeMargin">
+		<!--#/12/0-->
+		<h2>シーケンス②</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/1-->
+		<h3>シーケンスに関するメソッド</h3>
+		<div class="content">
+			これらのメソッドを紹介していく。
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-content">
+				シーケンス共通のメソッド
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>index</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>count</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+						</code></ul>
+					</div>
+				</div><br>
+				リストのメソッド
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>append</li>
+							<li>insert</li>
+							<li>extend</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>remove</li>
+							<li>pop</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>clear</li>
+							<li>reverse</li>
+						</code></ul>
+					</div>
+				</div><br>
+				文字列のメソッド（以前紹介していないもの）
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>join</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>split</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>rsplit</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/2-->
+		<h3>indexメソッド</h3>
+        <div class="content">
+			シーケンスにおいて、指定した値が最初に該当する index を返す。該当する値が無い場合は ValueError を返す。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（indexメソッド）">
+print((1, 3, 4, 3, 1).index(3))      # 1
+print("chopsticks".index('s'))       # 4
+print(range(-3, 9, 3).index(6))      # 3
+print([2, 3, 5, 7, 11].index(8))     # ValueError</code>
+		</pre>
+		<div class="content">
+			前に紹介したが、str の場合は部分文字列の検索ができる。str 以外の場合は、部分的な検索はできない。
+		</div>
+		<pre>
+			<code class="python">print("acknowledge".index("know"))     # 2
+print([2, 3, 5, 7, 11].index([5, 7]))  # ValueError</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/3-->
+		<h3>countメソッド</h3>
+        <div class="content">
+			シーケンス内の指定された要素の個数を返す。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（countメソッド）">
+print((1, 3, 4, 3, 1).count(3))      # 2
+print("constitution".count('t'))     # 3
+print(range(-3, 9, 3).count(6))      # 1</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/4-->
+		<h3>リストの拡張</h3>
+        <div class="content">
+			<dl>
+				<dt>appendメソッド</dt>
+				<dd>指定した要素をリストの最後尾に付け加える。</dd>
+			
+				<dt>insertメソッド</dt>
+				<dd>指定した要素をリストの指定した位置に付け加える。</dd>
+			
+				<dt>extendメソッド</dt>
+				<dd>指定した他のリストをリストの最後尾に付け加える。</dd>
+			</dl>
+		</div>
+		<pre>
+			<code class="python withTitle" data="記法">
+list.append(item)
+list.insert(index, item)
+list.extend(list)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（appendメソッド）">
+fruits = ['apple', 'banana', 'lemon']
+fruits.append('orange')
+print(fruits)
+# ['apple', 'banana', 'lemon', 'orange']</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（insertメソッド）">
+fruits = ['apple', 'banana', 'orange']
+fruits.insert(2, 'lemon')
+print(fruits)
+# ['apple', 'banana', 'lemon', 'orange']
+</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（extendメソッド）">
+fruits = ['apple', 'banana', 'lemon']
+fruits_2 = ['orange', 'melon']
+fruits.extend(fruits_2)
+print(fruits)
+# ['apple', 'banana', 'lemon', 'orange', 'melon']</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/5-->
+		<h3>リストの縮小</h3>
+        <div class="content">
+			<dl>
+				<dt>removeメソッド</dt>
+				<dd>指定した要素で初めに該当するものをリストから削除する。</dd>
+			
+				<dt>popメソッド</dt>
+				<dd>指定した index にある要素を削除し、その要素を返す。</dd>
+			</dl>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（removeメソッド）">
+friends = ['Alice', 'Bob', 'Charlie', 'Bob', 'Dave']
+friends.remove('Bob')
+print(friends)
+# ['Alice', 'Charlie', 'Bob', 'Dave']</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（popメソッド）">
+fruits = ['apple', 'banana', 'lemon', 'orange']
+poped_item = fruits.pop(2)
+print(fruits, poped_item)
+# ['apple', 'banana', 'orange'] lemon
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/6-->
+		<h3>その他のリストのメソッド</h3>
+        <div class="content">
+			<dl>
+				<dt>clearメソッド</dt>
+				<dd>リストの全ての要素を削除する。</dd>
+			
+				<dt>reverseメソッド</dt>
+				<dd>リストの要素を逆順に並び変える。</dd>
+			</dl>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（clearメソッド）">
+fruits = ['apple', 'banana', 'lemon', 'orange']
+fruits.clear()
+print(fruits)
+# []</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（reverseメソッド）">
+fruits = ['apple', 'banana', 'lemon', 'orange']
+fruits.reverse()
+print(fruits)
+# ['orange', 'lemon', 'banana', 'apple']
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/7-->
+		<h3>joinメソッド</h3>
+        <div class="content">
+			要素が文字列であるリストの各要素を結合してできた一つの文字列を返す。そのときの区切り文字に対して join メソッドを適用する。
+		</div>
+		<pre>
+			<code class="python withTitle" data="記法">
+"区切り文字".join(文字列のリスト)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（joinメソッド）">
+text_list = ['a', 'p', 'p', 'l', 'e']
+
+text = ''.join(text_list)
+print(text)     # apple
+
+text = '-'.join(text_list)
+print(text)     # a-p-p-l-e
+
+text = 'n'.join(text_list)
+print(text)     # anpnpnlne</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/8-->
+		<h3>split, rsplitメソッド</h3>
+        <div class="content">
+			文字列を区切り文字で最大分割回数だけ分割してできたリストを返す。split は左から、rsplit は右から分割する。最大分割回数を指定しないと、何回でも分割する。
+		</div>
+		<pre>
+			<code class="python withTitle" data="定義（splitメソッド）">
+def split(
+sep: str = None,       # 区切り文字
+maxsplit: int = -1     # 最大分割回数
+) -> list</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（split, rsplitメソッド）">
+text = "123-234-345-456"
+
+splited = text.split('-')
+print(splited)
+# [123, 234, 345, 456]
+
+splited = text.split('-', 2)
+print(splited)
+# [123, 234, 345-456]
+
+splited = text.split('3')
+print(splited)
+# [12, -2, 4-, 45-456]
+
+splited = text.rsplit('-')
+print(splited)
+# [123, 234, 345, 456]
+
+splited = text.rsplit('-', 2)
+print(splited)
+# ['123-234', '345', '456']
+
+splited = text.rsplit('3', 2)
+print(splited)
+# ['123-2', '4-', '45-456']</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/9-->
+		<h3>練習問題（シーケンス②）</h3>
+		<div class="content">
+			下の語群から、次の条件に当てはまるものを全て選びなさい。
+			<br><br>
+			<ol>
+				<li> スライス表記により一部分を取得できる。</li>
+				<li> 整数をかけることができる。</li>
+				<li> 比較演算子を用いて大小関係を比較できる。</li>
+				<li> 添字表記・スライス表記を用いて要素を変更できる。</li>
+				<li> del 文を用いて要素を削除できる。</li>
+				<li> index メソッドを用いて要素が何番目にあるのか取得できる。</li>
+				<li> count メソッドを用いて要素が何個含まれるか取得できる。</li>
+				<li> append メソッドを用いて要素を追加することができる。</li>
+				<li> remove メソッドを用いて要素を削除することができる。</li>
+				<li> split メソッドを用いて区切り文字で分割できる。</li>
+			</ol>
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">語群</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>list</li>
+							<li>tuple</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>range</li>
+							<li>str</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/10-->
+		<h3>練習問題（シーケンス②）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（1）">
+tupleA = (2, 9, 4, 1, 2)
+tupleB = (3, 8, 3, 3, 2)
+tupleA = tupleA * tupleB.index(2)
+tupleB = tupleB * tupleA.count(2)
+answer = tupleB.count(3)
+print(answer)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（2）">
+listA = [8, 3, 1, 2, 9]
+listB = [2, 4, 2, 1, 2]
+listA.remove(3)
+listB.pop(listA[1])
+listA.extend(listB)
+print(listA)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（3）">
+listA = [8, 3, 1, 2, 9]
+listB = [2, 4, 2, 1, 2]
+listA.reverse()
+listB.insert(2,listA[3])
+listC = listA[::2] + listB[::2]
+print(listC)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（4）">
+listA = "1-2-3-2-1".split('-')
+char = listA.pop(2)
+text = char.join(listA)
+listB = text.split('2')
+answer = listB.count('3')
+print(answer)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（5）">
+listA = list(range(-3, 5, 2))
+listA.pop(listA[1])
+listA.append(listA[0])
+listA.insert(listA[-1], 0)
+answer = listA.count(-3) + listA.index(1)
+print(answer)</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/12/11-->
+		<h3>解答（シーケンス②）</h3>
+		<div class="content">
+			<ol>
+				<li> スライス表記により一部分を取得できる。<br>list, tuple, range, str</li>
+				<li> 整数をかけることができる。<br>list, tuple, str</li>
+				<li> 比較演算子を用いて大小関係を比較できる。<br>list, tuple, str</li>
+				<li> 添字表記・スライス表記を用いて要素を変更できる。<br>list</li>
+				<li> del 文を用いて要素を削除できる。<br>list</li>
+				<li> index メソッドを用いて要素が何番目にあるのか取得できる。<br>list, tuple, range, str</li>
+				<li> count メソッドを用いて要素が何個含まれるか取得できる。<br>list, tuple, range, str</li>
+				<li> append メソッドを用いて要素を追加することができる。<br>list</li>
+				<li> remove メソッドを用いて要素を削除することができる。<br>list</li>
+				<li> split メソッドを用いて区切り文字で分割できる。<br>str</li>
 			</ol>
 		</div>
 	</section>

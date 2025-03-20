@@ -1,0 +1,209 @@
+<!doctype html>
+
+
+
+
+<!--スライド全体の作り-->
+<section>
+    <section class="wholeMargin">
+		<!--#/1/0-->
+		<h2>各章のタイトル</h2>
+	</section>
+    <section class="wholeMargin">
+		<!--#/1/1-->
+		<h3>各節のタイトル</h3>
+        <div class="content">
+			本文。
+		</div>
+	</section>
+</section>
+
+
+<!--注意書き(本文の中に書く)-->
+<div class="anotation">
+    ※注意書き。
+</div>
+
+
+<!--表-->
+<table class="table_design08">
+    <thead>
+        <tr>
+            <th>見出し１</th>
+            <th>見出し２</th>
+            <!--幅を広くしたい行のthに、class="txt" を追加する-->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>要素１</td>
+            <td>要素２</td>
+        </tr>
+        <tr>
+            <td>要素１</td>
+            <td>要素２</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!--beamer風ボックス-->
+<div class="beamer-box">
+    <div class="beamer-box-title">例（〇〇）</div>
+    <!--タイトルが「語群」の時もある-->
+    <div class="beamer-box-content">
+        <div class ="flex-container">
+            <div class ="flex-item">
+                <ul><code>
+                    <li>int</li>
+                    <li>float</li>
+                    <li>str</li>
+                    <li>bool</li>
+                </code></ul>
+            </div>
+            <div class ="flex-item">
+                <ul><code>
+                    <li>list</li>
+                    <li>tuple</li>
+                    <li>dict</li>
+                    <li>function</li>
+                </code></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--番号なし箇条書き(本文の中に書く)-->
+<ul>
+    <li>要素１</li>
+    <li>要素２</li>
+    <li>要素３</li>
+</ul>
+
+
+<!--番号付き箇条書き(本文の中に書く)-->
+<ol>
+    <li>要素１</li>
+    <li>要素２</li>
+    <li>要素３</li>
+</ol>
+
+
+<!--用語の説明(本文の中に書く)-->
+<dl>
+    <dt>用語１</dt>
+    <dd>説明。</dd>
+
+    <dt>用語２</dt>
+    <dd>説明。</dd>
+
+    <dt>用語３</dt>
+    <dd>説明。</dd>
+</dl>
+
+
+<!--タイトル有りコード例-->
+<pre>
+    <code class="python withTitle" data="例（〇〇）">
+print(round(2.32))        # 2
+print(round(-1.387, 2))   # -1.39
+print(round(71.31, 1))    # 71.3
+print(round(3587, -2))    # 3600</code>
+</pre>
+
+
+<!--タイトル無しコード例-->
+<pre>
+    <code class="python">print("y9E8hzKc".isalnum())    # True
+print("zNcRFfJi".isalpha())    # True
+print("53674289".isdigit())    # True
+print("tbjzyrqi".islower())    # True</code>
+</pre>
+
+
+<!--問題セクション-->
+<section class="wholeMargin">
+    <!--#/3/7-->
+    <h3>練習問題（type関数）</h3>
+    <div class="content">
+        次のコードを実行したときに、それぞれ画面には何が表示されるか？
+    </div>
+    <pre>
+        <code class="python withTitle" data="問題（print関数）">
+(1)　print(type(34-2j))
+(2)　print(type("92"))
+(3)　print(type(False))
+(4)　print(type(None))</code>
+    </pre>
+</section>
+
+
+<!--複数コード問題セクション-->
+<section class="wholeMargin">
+    <!--#/7/8-->
+    <h3>練習問題（シーケンス①）</h3>
+    <div class="content">
+        次のコードを実行したときに、それぞれ画面には何が表示されるか？
+    </div>
+    <pre>
+        <code class="python withTitle" data="問題（1）">
+tupleA = (2, 3, 5, 7, 11)
+tupleB = tupleA[3:] + tupleA[-4:-5:-1]
+print(tupleB)</code>
+    </pre>
+    <pre>
+        <code class="python withTitle" data="問題（2）">
+tupleA = tuple({2:'a', 3:'b', 5:'c', 7:'d', 11:'e'})
+tupleB = tupleA[:4:2] * tupleA[0]
+print(tupleB)</code>
+    </pre>
+</section>
+
+
+<!--関数定義コード-->
+<pre>
+    <code class="python withTitle" data="定義（rangeコンストラクタ）">
+def range(
+start: int = 0,
+stop:  int,
+step:  int = 1
+) -> range</code>
+</pre>
+
+
+<!--関数の記法-->
+<pre>
+    <code class="python withTitle" data="記法（rangeコンストラクタ）">
+range(stop)
+range(start, stop)
+range(start, stop, step)</code>
+</pre>
+
+
+<!--文字の装飾-->
+<strong>文字列</strong>
+<code>文字列</code>
+
+
+<!--SVG画像-->
+<img src="../svgImage/collection.svg" width="800" height="480">
+
+
+<!--texの数式(本文の中に書く)-->
+$$
+BMI = \frac{体重[\mathrm{kg}]}{身長[\mathrm{m}] \times 身長[\mathrm{m}]}
+$$
+
+$ 不快指数 = $
+$ 0.81 \times 気温 + 0.01 \times 湿度 \times (0.99 \times 気温 - 14.3) + 46.3 $
+
+
+<!--mermaid-->
+<pre class="mermaid">
+    graph TD;
+      A[Start] --> B[Process]
+      B --> C{Decision}
+      C -- Yes --> D[End]
+      C -- No --> B
+</pre>
