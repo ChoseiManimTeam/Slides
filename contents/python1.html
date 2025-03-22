@@ -488,7 +488,7 @@ print(float("94.233"))         # 94.233</code>
 		<pre>
 			<code class="python withTitle" data="定義（complexコンストラクタ）">
 def complex(
-    real: number = 0
+    real: number
     imag: number = 0
 ) -> complex</code>
 		</pre>
@@ -733,7 +733,7 @@ print(round(3587, -2))    # 3600   (百の位)</code>
 			<code class="python withTitle" data="問題（数値型）">
 (1)　print(float("3.14")+round(12.18))
 (2)　print(complex(2,7)-complex(4,3))
-(3)　print(abs(3-5*2)+2*-3!=(18%5=2*6-3**2))
+(3)　print(abs(3-5*2)+2*-3!=(18%5==2*6-3**2))
 (4)　print(abs(-4**2%5*2)//abs(True*3**2+3*-4))
 (5)　print(round(float("293.3911"),(3==2)*2+2))
 (6)　print((3-4j).imag+(2-8j)-2j.real)</code>
@@ -1083,7 +1083,7 @@ print("Hello WORLD".swapcase())      # hELLO world</code>
 			<code class="python withTitle" data="問題（文字列型）">
 (1)　print(str(3.14)*3+str(True))
 (2)　print(str("client">"climate").swapcase())
-(3)　print("Tanaka\nJiro".replace("jiro", "taro"))
+(3)　print("Tanaka\nJiro".replace("Jiro", "Taro"))
 (4)　print(str("W5gpuCMz".isdigit())+"\b")
 (5)　print("cease".index("e")+"cease".rindex("e"))
 (6)　print('First'.startswith("fi")+"First".find("e"))</code>
@@ -1621,7 +1621,7 @@ pear = 210
 apple = 180
 
 total = peach * 2 + pear * 5 + apple * 3
-print("全部で" + total + "円")</code>
+print("全部で" + str(total) + "円")</code>
 		</pre>
 	</section>
 	<section class="wholeMargin">
@@ -1743,7 +1743,7 @@ ruler = 180
 eraser = 60
 
 total = pencil * 4 + ruler * 2 + eraser * 2
-print("全部で" + total + "円")</code>
+print("全部で" + str(total) + "円")</code>
 		</pre>
 		<pre>
 			<code class="python withTitle" data="解答例（問題３）">
@@ -2454,38 +2454,19 @@ print(sorted("W3x8U4B2", reverse = True))
 		<!--#/11/1-->
 		<h3>リスト・タプルの生成</h3>
 		<div class="content">
-			リストのコンストラクタを用いて、様々なイテラブルオブジェクトをリスト型に変換できる。
+			それぞれのコンストラクタを用いて、様々なイテラブルオブジェクトをリスト型・タプル型に変換できる。
 			dict の場合は、key のみが対象となる。
 		</div>
 		<pre>
-			<code class="python withTitle" data="例（リストの生成）">
+			<code class="python withTitle" data="例（リスト・タプルの生成）">
 print(list((2, 3, 5, 7, 11, 13, 17)))
 # [2, 3, 5, 7, 11, 13, 17]
-
-print(list({2, 3, 5, 7, 11, 13, 17}))
-# [2, 3, 5, 7, 11, 13, 17]
-
-print(list("ABCDEFG"))
-# [A, B, C, D, E, F, G]
-
-print(list({'a':100, 'b':200, 'c':300}))
-# [a, b, c]
-</code>
-		</pre>
-		<div class="content">
-			タプルのコンストラクタを用いて、様々なイテラブルオブジェクトをタプル型に変換できる。
-			dict の場合は、key のみが対象となる。
-		</div>
-		<pre>
-			<code class="python withTitle" data="例（タプルの生成）">
-print(tuple([2, 3, 5, 7, 11, 13, 17]))
-# (2, 3, 5, 7, 11, 13, 17)
 
 print(tuple({2, 3, 5, 7, 11, 13, 17}))
 # (2, 3, 5, 7, 11, 13, 17)
 
-print(tuple("ABCDEFG"))
-# (A, B, C, D, E, F, G)
+print(list("ABCDEFG"))
+# [A, B, C, D, E, F, G]
 
 print(tuple({'a':100, 'b':200, 'c':300}))
 # (a, b, c)
@@ -2683,7 +2664,7 @@ print((1, 2, 3) * 2)           # (1, 2, 3, 1, 2, 3)</code>
 		<!--#/11/6-->
 		<h3>シーケンスにおける比較演算子</h3>
         <div class="content">
-			リスト・タプルにおいては、初めの index から順に（辞書で単語が並ぶ順番と同じように）大小を比較する。
+			リスト・タプルにおいては、初めの index から順に大小を比較する。同じ型同士でしか比較できない。
 			range においては、等価比較（等しいか等しくないか）は対応しているが、順序比較（大小関係の比較）は対応していない。
 			文字列については前に紹介したので省く。
 		</div>
@@ -2944,10 +2925,14 @@ print(fruits)
         <div class="content">
 			<dl>
 				<dt>removeメソッド</dt>
-				<dd>指定した要素で初めに該当するものをリストから削除する。</dd>
+				<dd>指定した要素で初めに該当するものをリストから削除する。<br>
+					指定した要素が存在しないと ValueError を返す。
+				</dd>
 			
 				<dt>popメソッド</dt>
-				<dd>指定した index にある要素を削除し、その要素を返す。</dd>
+				<dd>指定した index にある要素を削除し、その要素を返す。<br>
+					指定した index が存在しないと IndexError を返す。
+				</dd>
 			</dl>
 		</div>
 		<pre>
@@ -2961,8 +2946,8 @@ print(friends)
 			<code class="python withTitle" data="例（popメソッド）">
 fruits = ['apple', 'banana', 'lemon', 'orange']
 poped_item = fruits.pop(2)
-print(fruits, poped_item)
-# ['apple', 'banana', 'orange'] lemon
+print(fruits,  "削除されたのは", poped_item)
+# ['apple', 'banana', 'orange'] 削除されたのは lemon
 </code>
 		</pre>
 	</section>
@@ -3168,6 +3153,472 @@ print(answer)</code>
 				<li> split メソッドを用いて区切り文字で分割できる。<br>str</li>
 			</ol>
 		</div>
+	</section>
+</section>
+
+<section>
+    <section class="wholeMargin">
+		<!--#/13/0-->
+		<h2>セット（集合）</h2>
+	</section>
+    <section class="wholeMargin">
+		<!--#/13/1-->
+		<h3>set, frozenset の生成</h3>
+        <div class="content">
+			それぞれのコンストラクタを用いて、様々なイテラブルオブジェクトをset型・frozenset型に変換できる。
+			dict の場合は、key のみが対象となる。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（set, frozensetの生成）">
+print(set([2, 3, 5, 7, 11, 13, 17]))
+# {2, 3, 5, 7, 11, 13, 17}
+
+print(frozenset("ABCDEFG"))
+# frozenset({A, B, C, D, E, F, G})
+
+print(list({'a':100, 'b':200, 'c':300}))
+# {a, b, c}
+
+print(frozenset(range(-3:4)))
+# frozenset({-3, -2, -1, 0, 1, 2, 3})
+</code>
+		</pre>
+		<div class="content">
+			集合は順番がないので、上の例のように昇順に表示されるとは限らない。
+			また、重複がないので、重複のあるイテラブルオブジェクトを変換しようとすると、重複している要素は削除される。
+		</div>
+		<pre>
+            <code class="python">print(set([3, 2, 6, 2, 3, 5, 3]))
+# {2, 3, 5, 6}
+
+print(frozenset("EDEBCAC"))
+# frozenset({A, B, C, D, E})</code>
+			</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/13/2-->
+		<h3>集合演算</h3>
+        <div class="content">
+			集合に対して以下の<strong>集合演算子</strong>を用いることで、集合演算を行うことができる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>A | B</td>
+					<td>和集合</td>
+					<td>A & B</td>
+					<td>積集合</td>
+				</tr>
+				<tr>
+					<td>A - B</td>
+					<td>差集合</td>
+					<td>A ^ B</td>
+					<td>対称差集合</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<div class = "flex-container-column">
+			<div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">和集合 (A | B)</div>
+							<div class = "flex-item"><img src="../svgImage/union.svg" width="500" height="250"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">積集合 (A & B)</div>
+							<div class = "flex-item"><img src="../svgImage/intersection.svg" width="500" height="250"></div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</div>
+			<div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">差集合 (A - B)</div>
+							<div class = "flex-item"><img src="../svgImage/difference.svg" width="500" height="250"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">対称差集合 (A ^ B)</div>
+							<div class = "flex-item"><img src="../svgImage/symmetric_difference.svg" width="500" height="250"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（集合演算）">
+A = {2, 4, 6, 8, 10, 12, 14}
+B = {3, 6, 9, 12, 15}
+
+print(A | B)
+# {2, 3, 4, 6, 8, 9, 10, 12, 14, 15}
+
+print(A & B)
+# {6, 12}
+
+print(A - B)
+# {2, 4, 8, 10, 14}
+
+print(A ^ B)
+# {2, 3, 4, 8, 9, 10, 14, 15}</code>
+		</pre>
+		<div class="content">
+			集合であれば型が異なっていてもよい。その場合、演算子の左側にある集合の型で返される。
+		</div>
+		<pre>
+			<code class="python">
+A = {2, 4, 6, 8, 10, 12, 14}
+B = frozenset({3, 6, 9, 12, 15})
+
+print(A | B)
+# {2, 3, 4, 6, 8, 9, 10, 12, 14, 15}
+
+print(B & A)
+# frozenset({6, 12})
+
+print(B - A)
+# frozenset({3, 9, 15})
+
+print(A ^ B)
+# {2, 3, 4, 8, 9, 10, 14, 15}</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/13/3-->
+		<h3>集合における比較演算子</h3>
+        <div class="content">
+			集合においては以下の比較演算子を用いることができる。集合であれば型が異なっていてもよい。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>A &gt; B</td>
+					<td>BはAの真部分集合</td>
+					<td>A &gt;= B</td>
+					<td>BはAの部分集合</td>
+				</tr>
+				<tr>
+					<td>A &lt; B</td>
+					<td>AはBの真部分集合</td>
+					<td>A &lt;= B</td>
+					<td>AはBの部分集合</td>
+				</tr>
+				<tr>
+					<td>A == A</td>
+					<td>AとBは等しい</td>
+					<td>A != B</td>
+					<td>AとBは等しくない</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（集合における比較演算子）">
+A = {2, 3}
+B = frozenset({2, 3, 4, 5})
+
+print(A > B)     # False
+print(A >= B)    # False
+print(A < B)     # True
+print(A <= B)    # True
+print(A == B)    # False
+print(A != B)    # True</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/13/4-->
+		<h3>複合代入集合演算子</h3>
+        <div class="content">
+			特に明確な呼び名があるわけではありませんが、このスライドではこのように呼ぶことにします。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th>意味</th>
+					<th>表記</th>
+					<th>意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>A |= B</td>
+					<td>A = A | B</td>
+					<td>A &= B</td>
+					<td>A = A & B</td>
+				</tr>
+				<tr>
+					<td>A -= B</td>
+					<td>A = A - B</td>
+					<td>A ^= B</td>
+					<td>A = A ^ B</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（複合代入集合演算子）">
+A = {2, 4, 6, 8}
+B = frozenset({3, 6, 9})
+C = {1, 3, 5, 7, 9}
+
+A |= B
+print(A)
+# {2, 3, 4, 6, 8, 9}
+
+A -= C
+print(A)
+# {2, 4, 6, 8}
+
+B &= C
+print(B)
+# frozenset({3, 9})
+
+B ^= C
+print(B)
+# frozenset({1, 5, 7})</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/13/5-->
+		<h3>演算子の優先順位</h3>
+		<div class="content">
+			先ほどの演算子の優先順位の表に集合演算子を加えると以下のようになる。表の上の方が優先度が高い。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>演算子</th>
+					<th>説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>[index], [start, stop, step]</td>
+					<td>添字表記、スライス表記</td>
+				</tr>
+				<tr>
+					<td>**</td>
+					<td>べき乗</td>
+				</tr>
+				<tr>
+					<td>+x , -x</td>
+					<td>正数、負数</td>
+				</tr>
+				<tr>
+					<td>* , / , // , %</td>
+					<td>乗算、除算、切り捨て除算、剰余算</td>
+				</tr>
+				<tr>
+					<td>+ , -</td>
+					<td>加算、減算、差集合</td>
+				</tr>
+				<tr>
+					<td>&</td>
+					<td>積集合</td>
+				</tr>
+				<tr>
+					<td>^</td>
+					<td>対称差集合</td>
+				</tr>
+				<tr>
+					<td>|</td>
+					<td>和集合</td>
+				</tr>
+				<tr>
+					<td>> , < , >= , <= , == , !=</td>
+					<td>比較</td>
+				</tr>
+				<tr>
+					<td>not x</td>
+					<td>論理演算子 not</td>
+				</tr>
+				<tr>
+					<td>and</td>
+					<td>論理演算子 and</td>
+				</tr>
+				<tr>
+					<td>or</td>
+					<td>論理演算子 or</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（演算子の優先順位）">
+A = {1, 3, 5, 6, 8}
+B = {1, 2, 3, 5, 7}
+C = {3, 4, 6, 8, 9}
+
+print(A ^ B | C & A - B ^ A)        # {1, 2, 3, 5, 6, 7, 8}
+print(C & B - A | B ^ A & C)        # {1, 2, 5, 6, 7, 8}
+print(B ^ A & B | C - B - A)        # {2, 4, 7, 9}
+print(A - C | B | A & B & C)        # {1, 2, 3, 5, 7}
+print(A & B ^ C ^ B & C | B)        # {1, 2, 3, 4, 5, 6, 7, 8, 9}
+print(B ^ A - C <= B | A & C)       # True
+print(A ^ B ^ C >= A & C - B)       # False
+print(B & C | B ^ C < B | C)        # False
+print(C - A | B > B ^ A - C)        # True
+print(A ^ B ^ C == (B | C) - A)     # False</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/13/6-->
+		<h3>setのメソッド</h3>
+        <div class="content nomargin">
+			<dl>
+				<dt>addメソッド</dt>
+				<dd class="nomargin">指定した要素を set に追加する。
+				</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">A = {1, 2, 3, 4, 5}
+A.add(6)
+print(A)
+# {1, 2, 3, 4, 5, 6}</code>
+		</pre>
+		<br>
+		<div class="content nomargin">
+			<dl>
+				<dt>removeメソッド</dt>
+				<dd class="nomargin">指定した要素を set から削除する。<br>
+					含まれていない場合は KeyError を返す。
+				</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">A = {1, 2, 3, 4, 5}
+A.remove(5)
+print(A)
+# {1, 2, 3, 4}</code>
+		</pre>
+		<br>
+		<div class="content nomargin">
+			<dl>
+				<dt>discardメソッド</dt>
+				<dd class="nomargin">指定した要素が含まれていたら set から削除する。<br>
+					含まれていない場合はエラーは返さない。
+				</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">A = {1, 2, 3, 4, 5}
+A.discard(5)
+print(A)
+# {1, 2, 3, 4}</code>
+		</pre>
+		<br>
+		<div class="content nomargin">
+			<dl>
+				<dt>popメソッド</dt>
+				<dd class="nomargin">set 内のいずれかの要素を削除し、その要素を返す。<br>
+					set が空の場合、KeyError を返す。
+				</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">A = {1, 2, 3, 4, 5}
+poped_item = A.pop()
+print(A, "削除されたのは", poped_item)
+# {2, 3, 4, 5} 削除されたのは 1</code>
+		</pre>
+		<br>
+		<div class="content nomargin">
+			<dl>
+				<dt>clearメソッド</dt>
+				<dd class="nomargin">set 内の全ての要素を削除する。
+				</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">A = {1, 2, 3, 4, 5}
+A.clear()
+print(A)
+# set()</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/13/7-->
+		<h3>練習問題（セット(集合)）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（1）">
+A = {2, 4, 6, 7, 8, 10}
+B = frozenset({2, 3, 4, 5, 7, 9})
+print(B - A | A - B)
+print(A ^ A & B)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（2）">
+A = {1, 2, 3}
+B = {1, 2, 3, 4}
+C = frozenset({1, 2, 3})
+D = frozenset({4, 5, 6})
+print(A < B)
+print(A < C)
+print(A < D)
+print(A <= B)
+print(A <= C)
+print(A <= D)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（3）">
+A = set([3, 8, 5, 3, 8])
+B = frozenset((5, 7, 2, 7, 5))
+C = set(range(4, 7))
+A |= B
+C ^= B
+A.remove(2)
+C.add(2)
+print(A - C)
+print(C - A)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（4）">
+A = set({3:'a', 5:'b', 7:'c'})
+B = frozenset(range(2, 5))
+C = set(range(7, -2, -3))
+A.add(4)
+C.discard(5)
+print((A^B) & (B^C))
+print((A-B) | (C-A))
+print(A^B^C)
+print((A|B) >= (A|C))</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（5）">
+A = {11, 4, 5, 19, 8, 11, 11, 2, 4, 1, 5, 5, 14, 7, 2, 1, 15, 9, 12, 15}
+B = {7, 20, 9, 1, 15, 19, 19, 5, 6, 17, 16, 6, 13, 3, 3, 12, 2, 13, 17}
+C = {20, 12, 4, 9, 4, 9, 11, 10, 4, 19, 14, 9, 18, 6, 2, 16, 4, 2, 5, 2}
+print(A^B^C == (A|B|C) - (A&B) - (B&C) - (C&A) | (A&B&C))
+print((A-B)|(B-C)|(C-A) == (A|B|C) - (A&B&C))
+print((len(A^B)+len(B^C)+len(C^A))/2 == len(A|B|C)-len(A&B&C))
+print(len(A|B|C) == len(A)+len(B)+len(C)-len(A&B)-len(B&C)-len(C&A)+len(A&B&C))</code>
+		</pre>
 	</section>
 </section>
 

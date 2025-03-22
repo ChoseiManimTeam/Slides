@@ -52,9 +52,14 @@ padding: 30px;
 .flex-container {
     display: flex;
 }
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}
 .flex-item {
     flex: 1;
 }
+
 
 /* 文章部分 */
 .content {
@@ -111,4 +116,11 @@ td:first-child:last-child {
 }
 .txt {
   width: 350px;
+}
+
+.nomargin {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
