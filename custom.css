@@ -117,6 +117,9 @@ td:first-child:last-child {
 .txt {
   width: 350px;
 }
+.txt2 {
+  width: 600px;
+}
 
 .nomargin {
   margin-top: 0px !important;

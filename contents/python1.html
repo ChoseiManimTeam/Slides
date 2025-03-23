@@ -3355,7 +3355,7 @@ print(A != B)    # True</code>
 		<!--#/13/4-->
 		<h3>複合代入集合演算子</h3>
         <div class="content">
-			特に明確な呼び名があるわけではありませんが、このスライドではこのように呼ぶことにします。
+			特に明確な呼び名があるわけではないが、このスライドではこのように呼ぶことにする。
 		</div>
 		<table class="table_design08">
 			<thead>
@@ -3477,13 +3477,9 @@ C = {3, 4, 6, 8, 9}
 print(A ^ B | C & A - B ^ A)        # {1, 2, 3, 5, 6, 7, 8}
 print(C & B - A | B ^ A & C)        # {1, 2, 5, 6, 7, 8}
 print(B ^ A & B | C - B - A)        # {2, 4, 7, 9}
-print(A - C | B | A & B & C)        # {1, 2, 3, 5, 7}
-print(A & B ^ C ^ B & C | B)        # {1, 2, 3, 4, 5, 6, 7, 8, 9}
 print(B ^ A - C <= B | A & C)       # True
 print(A ^ B ^ C >= A & C - B)       # False
-print(B & C | B ^ C < B | C)        # False
-print(C - A | B > B ^ A - C)        # True
-print(A ^ B ^ C == (B | C) - A)     # False</code>
+print(B & C | B ^ C < B | C)        # False</code>
 		</pre>
 	</section>
 	<section class="wholeMargin">
@@ -3607,21 +3603,445 @@ B = frozenset(range(2, 5))
 C = set(range(7, -2, -3))
 A.add(4)
 C.discard(5)
-print((A^B) & (B^C))
-print((A-B) | (C-A))
-print(A^B^C)
-print((A|B) >= (A|C))</code>
+print((C - B & A) | (A ^ C - B) - (C ^ A - B))</code>
 		</pre>
 		<pre>
 			<code class="python withTitle" data="問題（5）">
 A = {11, 4, 5, 19, 8, 11, 11, 2, 4, 1, 5, 5, 14, 7, 2, 1, 15, 9, 12, 15}
 B = {7, 20, 9, 1, 15, 19, 19, 5, 6, 17, 16, 6, 13, 3, 3, 12, 2, 13, 17}
 C = {20, 12, 4, 9, 4, 9, 11, 10, 4, 19, 14, 9, 18, 6, 2, 16, 4, 2, 5, 2}
-print(A^B^C == (A|B|C) - (A&B) - (B&C) - (C&A) | (A&B&C))
-print((A-B)|(B-C)|(C-A) == (A|B|C) - (A&B&C))
-print((len(A^B)+len(B^C)+len(C^A))/2 == len(A|B|C)-len(A&B&C))
-print(len(A|B|C) == len(A)+len(B)+len(C)-len(A&B)-len(B&C)-len(C&A)+len(A&B&C))</code>
+print(A^B^C == (A|B|C) - (A&B) - (B&C) - (C&A) | (A&B&C))</code>
 		</pre>
+	</section>
+</section>
+
+<section>
+    <section class="wholeMargin">
+		<!--#/14/0-->
+		<h2>マッピング</h2>
+	</section>
+    <section class="wholeMargin">
+		<!--#/14/1-->
+		<h3>辞書の生成</h3>
+        <div class="content">
+			コンストラクタを用いて、次のようにして辞書を生成できる。
+		</div>
+		<pre class="nomargin">
+			<code class="python withTitle" data="記法（dictコンストラクタ）">
+dict([(key1, value1), (key2, value2), ... ])
+dict(key1 = value1, key2 = value2, ... )</code>
+		</pre>
+		<div class="content nomargin">
+			下の表記の場合、key は文字列しか対応しておらず、クォーテーションを付けないで表記する。また、key は変数名と同じ制約を受ける。
+		</div>
+		<br>
+		<pre>
+			<code class="python withTitle" data="例（辞書の生成）">
+# カッコが多すぎて見づらくなるため、print()は無くした
+dict([("apple", 120), ("banana", 80), ("melon", 360)])
+dict(apple = 120, banana = 80, melon = 360)
+# {'apple': 120, 'banana': 80, 'melon': 360}</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/2-->
+		<h3>辞書の基本的操作</h3>
+		<pre>
+			<code class="python withTitle" data="記法（valueの取得）">
+mapping[key]   # keyに対応するvalueを取得</code>
+		</pre>
+		<div class="content">
+			上の記法を使って、以下のことができる。
+		    <ul>
+				<li>特定の key に対応する value の取得</li>
+				<li>特定の key に対応する value の変更</li>
+				<li>新たな (key, value) の追加</li>
+				<li>del文を使った特定の (key, value) の削除</li>
+			</ul>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（辞書の基本的操作）">
+fruits = {'apple': 120, 'banana': 80}
+
+# valueの取得
+print(fruits['apple'])
+# 120
+
+# valueの変更
+fruits['apple'] = 140
+print(fruits)
+# {'apple': 140, 'banana': 80}
+
+# (key,value)の追加
+fruits['lemon'] = 60
+print(fruits)
+# {'apple': 140, 'banana': 80, 'lemon': 60}
+
+# (key,value)の削除
+del fruits['banana']
+print(fruits)
+# {'apple': 140, 'lemon': 60}
+</code>
+		</pre>
+		<div class="content">
+			存在しない key に対応する value を取得しようとすると、KeyError が返される。
+		</div>
+		<pre>
+			<code class="python">fruits = {'apple': 120, 'banana': 80}
+print(fruits['melon'])
+# KeyError</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/3-->
+		<h3>辞書の統合</h3>
+        <div class="content">
+			辞書では以下の演算子を用いて辞書を統合することができる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>表記</th>
+					<th class="txt2">意味</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>dictA | dictB</td>
+					<td>dictAとdictBを統合した新たな辞書を返す</td>
+				</tr>
+				<tr>
+					<td>dictA |= dictB</td>
+					<td>dictA = dictA | dictB</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="content">
+			統合する２つの辞書の key に重複があった場合、演算子の右側にある (key, value) が優先される。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（辞書の統合）">
+dictA = {'apple': 120, 'banana': 80}
+dictB = {'lemon': 60, 'melon': 360}
+print(dictA | dictB)
+# {'apple': 120, 'banana': 80, 'lemon': 60, 'melon': 360}
+
+dictA = {'apple': 120, 'banana': 80}
+dictB = {'apple': 140, 'melon': 360}
+print(dictA | dictB)
+# {'apple': 140, 'banana': 80, 'melon': 360}
+
+dictA = {'apple': 120, 'banana': 80}
+dictB = {'lemon': 60, 'melon': 360}
+dictB |= dictA
+print(dictB)
+# {'lemon': 60, 'melon': 360, 'apple': 120, 'banana': 80}
+
+dictA = {'apple': 120, 'banana': 80}
+dictB = {'apple': 140, 'melon': 360}
+dictB |= dictA
+print(dictB)
+# {'apple': 120, 'melon': 360, 'banana': 80}
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/4-->
+		<h3>辞書における比較演算子</h3>
+		<div class="content">
+			辞書では、等価比較は対応しているが、順序比較は対応していない。
+			<strong>順序に関係なく</strong>、同じ (key, value) を持つときに等しいと判断される。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（辞書における比較演算子）">
+dictA = {'apple': 120, 'banana': 80}
+dictB = {'banana': 80, 'apple': 120}
+print(dictA == dictB)     # True
+print(dictA != dictB)     # False
+
+dictA = {'apple': 120, 'banana': 80}
+dictB = {'lemon':60, 'orange': 150}
+print(dictA == dictB)     # False
+print(dictA != dictB)     # True
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/5-->
+		<h3>辞書のメソッド</h3>
+		<div class="content nomargin">
+			<dl>
+				<dt>popitemメソッド</dt>
+				<dd class="nomargin">辞書の最後の要素を削除し、それを返す。</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">fruits = {'apple': 120, 'banana': 80, 'melon': 360}
+poped_item = fruits.popitem()
+print(fruits, poped_item)
+# {'apple': 120, 'banana': 80} ('melon', 360)</code>
+		</pre>
+		<br>
+		<div class="content nomargin">
+			<dl>
+				<dt>setdefaultメソッド</dt>
+				<dd class="nomargin">辞書に key が存在したら、それに対応する value を返す。<br>
+					存在しなければ、辞書に新たな (key, default) を追加し、default を返す。
+				</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">dict.setdefault(key, default = None)</code>
+		</pre>
+		<pre class="nomargin">
+			<code class="python">fruits = {'apple': 120, 'banana': 80}
+
+value = fruits.setdefault('apple', 360)
+print(fruits, value)
+# {'apple': 120, 'banana': 80} 120
+
+value = fruits.setdefault('melon', 360)
+print(fruits, value)
+# {'apple': 120, 'banana': 80, 'melon': 360} 360</code>
+		</pre>
+		<br>
+		<div class="content nomargin">
+			<dl>
+				<dt>clearメソッド</dt>
+				<dd class="nomargin">辞書内の全ての要素を削除する。</dd>
+			</dl>
+		</div>
+		<pre class="nomargin">
+			<code class="python">fruits = {'apple': 120, 'banana': 80, 'melon': 360}
+fruits.clear()
+print(fruits)
+# {}</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/6-->
+		<h3>ビューオブジェクトの取得</h3>
+        <div class="content">
+			辞書に対して以下のメソッドを使用することで、それぞれの一覧をイミュータブルな<strong>ビューオブジェクト</strong>として取得できる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>メソッド</th>
+					<th>一覧</th>
+					<th>返り値の型</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>dict.keys()</td>
+					<td>key</td>
+					<td>dict_keys</td>
+				</tr>
+				<tr>
+					<td>dict.values()</td>
+					<td>value</td>
+					<td>dict_values</td>
+				</tr>
+				<tr>
+					<td>dict.items()</td>
+					<td>(key, value)</td>
+					<td>dict_items</td>
+				</tr>
+			</tbody>
+		</table>
+		<pre>
+			<code class="python withTitle" data="例（ビューオブジェクトの取得）">
+fruits = {'apple': 180, 'banana': 100, 'lemon': 85}
+
+print(fruits.keys())
+# dict_keys(['apple', 'banana', 'lemon'])
+
+print(fruits.values())
+# dict_values([180, 100, 85])
+
+print(fruits.items())
+# dict_items([('apple', 180), ('banana', 100), ('lemon', 85)])</code>
+		</pre>
+		<div class="content">
+			ビューオブジェクトは元の辞書に連動している。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（ビューオブジェクトの連動）">
+fruits = {'apple': 180, 'banana': 100, 'lemon': 85}
+view_values = fruits.values()
+
+print(view_values)
+# dict_values([180, 100, 85])
+
+fruits['apple'] = 140
+print(view_values)
+# dict_values([140, 100, 85])</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/7-->
+		<h3>ビューオブジェクトの操作</h3>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>メソッド</th>
+					<th>返り値の型</th>
+					<th>型の分類</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>dict.keys()</td>
+					<td>dict_keys</td>
+					<td>集合</td>
+				</tr>
+				<tr>
+					<td>dict.values()</td>
+					<td>dict_values</td>
+					<td>コレクション</td>
+				</tr>
+				<tr>
+					<td>dict.items()</td>
+					<td>dict_items</td>
+					<td>集合</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="content">
+			上の表より、３つの型全てにコレクションの操作を行うことができ、dict_keys と dict_items については集合演算を行える。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（ビューオブジェクトの操作）">
+dict1 = {1:'a', 2:'b', 5:'e', 7:'g', 8:'h'}
+dict2 = {3:'g', 4:'f', 5:'e', 7:'c', 9:'a'}
+keys1 = dict1.keys()
+values1 = dict1.values()
+items1 = dict1.items()
+keys2 = dict2.keys()
+values2 = dict2.values()
+items2 = dict2.items()
+
+print((7, 'g') in items1)     # True
+print(len(values1))           # 5
+print(sum(keys1))             # 23
+print(min(values2))           # a
+print(keys1 & keys2)          # {1, 2, 8}
+print(items1 ^ items2)        # {(5, 'e')}</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/8-->
+		<h3>練習問題（マッピング）</h3>
+		<div class="content">
+			下の語群から、次の条件に当てはまるものを全て選びなさい。
+			<br><br>
+			<ol>
+				<li> key により value を取得できる。</li>
+				<li> key により value を変更できる。</li>
+				<li> 「 | 」演算子を使用できる。</li>
+				<li> 「 == 」演算子を使用できる。</li>
+				<li> 「 < 」演算子を使用できる。</li>
+				<li> 「 & 」演算子を使用できる。</li>
+				<li> 「 in 」演算子を使用できる。</li>
+				<li> clear メソッドを使用できる。</li>
+				<li> sum 関数を使用できる。</li>
+				<li> len 関数を使用できる。</li>
+			</ol>
+		</div>
+		<div class="beamer-box">
+			<div class="beamer-box-title">語群</div>
+			<div class="beamer-box-content">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<ul><code>
+							<li>dict</li>
+							<li>dict_keys</li>
+						</code></ul>
+					</div>
+					<div class ="flex-item">
+						<ul><code>
+							<li>dict_values</li>
+							<li>dict_items</li>
+						</code></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/9-->
+		<h3>練習問題（マッピング）</h3>
+		<div class="content">
+			次のコードを実行したときに、それぞれ画面には何が表示されるか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="問題（1）">
+dictA = dict(a = 10, b = 20, c = 30, d = 40)
+dictB = dict([('e', 50), ('f', 60)])
+del dictA['a']
+del dictB['f']
+print(dictA['b'] + dictB['e'])
+print(dictA | dictB)
+</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（2）">
+dictA = {5:'a', 6:'b', 7:'c'}
+dictB = {7:'c'}
+dictB[5] = 'a'
+dictB.setdefault(7, 'd')
+dictB.setdefault(6, 'b')
+print(dictA == dictB)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（3）">
+dictA = {5:'a', 6:'b', 7:'c'}
+dictA.clear()
+dictA['apple'] = 130
+dictA['orange'] = 100
+dictA['melon'] = 450
+dictA.popitem()
+print(dictA)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（4）">
+dictA = {1:-1, 2:-1, 3:-1, 4:-2}
+dictB = {2:-2, 4:-1, 6:-2, 8:-2}
+itemA = dictA.items()
+itemB = dictB.items()
+dictA[2] = -2
+dictB[4] = -2
+print(itemA & itemB)</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="問題（5）">
+dictA = {1:'en', 2:'jp', 3:'de', 4:'ko'}
+a = dictA.popitem()
+b = dictA.setdefault(2, 'fr')
+c = dictA.setdefault(4, 'fr')
+print(a, b, c)
+print(list(dictA.values()))
+</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/14/10-->
+		<h3>解答（マッピング）</h3>
+		<div class="content">
+			<ol>
+				<li> key により value を取得できる。<br>dict</li>
+				<li> key により value を変更できる。<br>dict</li>
+				<li> 「 | 」演算子を使用できる。<br>dict, dict_keys, dict_items</li>
+				<li> 「 == 」演算子を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
+				<li> 「 < 」演算子を使用できる。<br>dict_keys, dict_items</li>
+				<li> 「 & 」演算子を使用できる。<br>dict_keys, dict_items</li>
+				<li> 「 in 」演算子を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
+				<li> clear メソッドを使用できる。<br>dict</li>
+				<li> sum 関数を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
+				<li> len 関数を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
+			</ol>
+		</div>
 	</section>
 </section>
 
