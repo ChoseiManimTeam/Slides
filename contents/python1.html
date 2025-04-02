@@ -3926,8 +3926,8 @@ print((7, 'g') in items1)     # True
 print(len(values1))           # 5
 print(sum(keys1))             # 23
 print(min(values2))           # a
-print(keys1 & keys2)          # {1, 2, 8}
-print(items1 ^ items2)        # {(5, 'e')}</code>
+print(keys1 ^ keys2)          # {1, 2, 3, 4, 8, 9}
+print(items1 & items2)        # {(5, 'e')}</code>
 		</pre>
 	</section>
 	<section class="wholeMargin">
@@ -4038,10 +4038,1669 @@ print(list(dictA.values()))
 				<li> 「 & 」演算子を使用できる。<br>dict_keys, dict_items</li>
 				<li> 「 in 」演算子を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
 				<li> clear メソッドを使用できる。<br>dict</li>
-				<li> sum 関数を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
+				<li> sum 関数を使用できる。<br>dict, dict_keys, dict_values</li>
 				<li> len 関数を使用できる。<br>dict, dict_keys, dict_values, dict_items</li>
 			</ol>
 		</div>
+	</section>
+</section>
+
+<section>
+	<section class="wholeMargin">
+		<!--#/15/0-->
+		<h2>問題演習</h2>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/1-->
+		<h3>例題１</h3>
+		<div class="content">
+			次のリストについての以下の項目を表示せよ。<br><br>
+            <ol>
+                <li>5が含まれるかどうか（True or False）</li>
+                <li>要素の個数</li>
+                <li>要素の合計値</li>
+                <li>要素の最大値</li>
+                <li>要素の大きいほうから2番目の値</li>
+            </ol>
+		</div>
+		<pre>
+			<code class="python">[8, 5, 2, 5, 9, 7, 6, 3, 7, 1]</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（解答）">
+numbers = [8, 5, 2, 5, 9, 7, 6, 3, 7, 1]
+
+print("5が含まれるかどうか：" + str(5 in numbers))
+print("要素の個数：" + str(len(numbers)))
+print("要素の合計値：" + str(sum(numbers)))
+print("要素の最大値：" + str(max(numbers)))
+
+sorted_num = sorted(numbers)
+print("要素の大きいほうから2番目の値：" + str(sorted_num[-2]))</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/2-->
+		<h3>問題１</h3>
+		<div class="content">
+			次のタプルについての以下の項目を表示せよ。<br><br>
+            <ol>
+                <li>7が含まれるかどうか（True or False）</li>
+                <li>要素の「5」の個数</li>
+                <li>要素の平均値</li>
+                <li>要素の小さいほうから2番目の値</li>
+				<li>要素の「6」は大きいほうから何番目にあるか</li>
+            </ol>
+		</div>
+		<pre>
+			<code class="python">(5, 9, 1, 6, 9, 4, 3, 7, 9, 5)</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/3-->
+		<h3>例題２</h3>
+		<div class="content">
+			次の文字列について以下の操作を行いなさい。
+			<ol>
+				<li>「-」を区切り文字として分割し、リストにせよ。</li>
+                <li>「22」を「33」に変えよ。</li>
+                <li>「14」を削除せよ。</li>
+                <li>index が 1~3 までの要素を、区切り文字を「0」にして結合した文字列を表示せよ（8桁の数字になる）。
+				</li>
+            </ol>
+		</div>
+		<pre>
+			<code class="python">"27-30-22-14-25-16-38"</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（解答）">
+text = "27-30-22-14-25-16-38"
+nums = text.split('-')
+nums[nums.index('22')] = '33'
+nums.remove('14')
+answer = '0'.join(nums[1:4])
+print(answer)</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/4-->
+		<h3>問題２</h3>
+		<div class="content">
+			次の文字列について以下の操作を行いなさい。
+			<ol>
+				<li>「,」を区切り文字として分割し、リストにせよ。</li>
+				<li>  20～40のいずれかの数字を入力させよ。</li>
+                <li>「28」を先ほどの入力に置き換えよ。</li>
+                <li>「27」を削除せよ。</li>
+                <li>index が 1~3 までの要素を、区切り文字を「0」にして結合した文字列を表示せよ（8桁の数字になる）。
+				</li>
+            </ol>
+		</div>
+		<pre>
+			<code class="python">"43,28,36,27,25,34"</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/5-->
+		<h3>例題３</h3>
+		<div class="content">
+			$
+			A = \{1, 4, 7, ..., 100\} \\
+			B = \{3, 7, 11, ..., 99\} \\
+			C = \{2, 7, 12, ..., 97\} \\
+			のとき、A \cup B \cup C の個数を求めよ。
+			$
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（解答）">
+A = set(range(1, 101, 3))
+B = set(range(3, 100, 4))
+C = set(range(2, 98, 5))
+print(len(A | B | C)) </code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/6-->
+		<h3>問題３</h3>
+		<div class="content">
+			$
+			A = \{2, 5, 8, ..., 98\} \\
+			B = \{3, 7, 11, ..., 99\} \\
+			C = \{1, 7, 13, ..., 97\} \\
+			のとき、A \cap B \cap C を表示せよ。
+			$
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/7-->
+		<h3>例題４</h3>
+		<div class="content">
+			以下は果物屋さんで売っている果物と値段です。
+			果物の一覧をタプルとして表示し、そこから買いたい果物を一つ入力してもらい、その値段を表示せよ。
+		</div>
+		<pre>
+			<code class="python">{'apple':120, 'banana':80, 'lemon':60, 'orange':100, 'melon':300, 'peach':180}</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="例（解答）">
+fruits = {'apple':120, 'banana':80, 'lemon':60, 'orange':100, 'melon':300, 'peach':180}
+print("果物の一覧")
+print(tuple(fruits.keys()))
+order = input("買いたい果物を一つ入力してください：")
+print(str(fruits[order]) + "円です")</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/8-->
+		<h3>問題４</h3>
+		<div class="content">
+			以下は八百屋さんで売っている野菜と値段です。
+			野菜の一覧をタプルとして表示し、そこから買いたい野菜を一つ入力してもらい、その値段を表示せよ。
+		</div>
+		<pre>
+			<code class="python">{'cabbage':300, 'lettuce':200, 'carrot':150, 'potato':250, 'onion':180, 'asparagus':400}</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/9-->
+		<h3>例題５</h3>
+		<div class="content">
+			以下のリストは、抽選機の中に入っている玉の色を示したもので、リストの初めの玉から順に取り出されるものとします。
+			また以下の辞書は、取り出された玉の色と景品の対応を示したものです。
+		</div>
+		<pre>
+			<code class="python">['red', 'yello', 'yello', 'white', 'white', 'yello', 'white', 'white', 'gold', 'yello', 'white', 'white']
+{'white':'ティッシュ', 'yello':'サランラップ', 'blue':'高級バスタオル', 'red':'4Kテレビ', 'gold':'ハワイ旅行券'}</code>
+		</pre>
+		<div class="content">
+			①何種類の玉が残っているか表示せよ。<br>
+			②何番目に玉を引くかを入力してもらい、その時の景品を表示せよ。
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（解答）">
+balls = ['red', 'yello', 'yello', 'white', 'white', 'yello', 'white', 'white', 'gold', 'yello', 'white', 'white']
+gift = {'white':'ティッシュ', 'yello':'サランラップ', 'blue':'高級バスタオル', 'red':'4Kテレビ', 'gold':'ハワイ旅行券'}
+print(str(len(set(balls))) + '種類の玉が残っている。')
+num = input('何番目に玉を引きたいですか？' + '\n' + '1～' + str(len(balls)) + 'の中から選んでね：')
+print('おめでとうございます。' + gift[balls[int(num)-1]] + 'が当選しました。')</code>
+		</pre>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/10-->
+		<h3>問題５</h3>
+		<div class="content">
+			以下のリストは、抽選機の中に入っている玉の色を示したもので、リストの初めの玉から順に取り出されるものとします。
+			また以下の辞書は、取り出された玉の色と景品の対応を示したものです。
+		</div>
+		<pre>
+			<code class="python">['white', 'white', 'blue', 'yello', 'yello', 'blue', 'yello', 'white', 'white', 'white', 'white', 'yello', 'yello', 'blue', 'yello']
+{'white':'ボールペン', 'yello':'キッチンペーパー', 'blue':'電動歯ブラシ', 'red':'ドライヤー', 'gold':'草津温泉旅行'}</code>
+		</pre>
+		<div class="content">
+			①何種類の玉が残っているか表示せよ。<br>
+			②何番目に玉を引くかを入力してもらい、その時の景品を表示せよ。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/15/11-->
+		<h3>模範解答</h3>
+		<pre>
+			<code class="python withTitle" data="解答例（問題１）">
+後で載せます</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="解答例（問題２）">
+後で載せます</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="解答例（問題３）">
+後で載せます</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="解答例（問題４）">
+後で載せます</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="解答例（問題５）">
+後で載せます</code>
+		</pre>
+	</section>
+</section>
+
+<section>
+	<section class="wholeMargin">
+		<!--#/16/0-->
+		<h2>メモリ管理①</h2>
+	</section>
+    <section class="wholeMargin">
+		<!--#/16/1-->
+		<h3>メモリ管理とは</h3>
+        <div class="content">
+			この章では、<br>
+			<p>
+			<ol>
+				<li>変数はどのように値を管理しているのか。</li>
+				<li>変数の値を書きかえたときにはどのような処理が行われるのか。</li>
+				<li>変数から変数への値の受け渡しはどのように行われるのか。</li>
+			</ol>
+			</p>
+			について学習していく。
+			<br><br>
+			一度Pythonを離れて、プログラミングの全体的な視点から解説する。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/2-->
+		<h3>なぜ学ぶのか</h3>
+        <div class="content">
+			あなたはこの一見不可解な挙動を説明できるだろうか？
+		</div>
+		<pre>
+			<code class="python withTitle" data="コードA">
+strA = 'Apple'
+strB = strA
+strB += 'Pen'
+print(strA)     # Apple
+print(strB)     # ApplePen</code>
+		</pre>
+		<pre>
+			<code class="python withTitle" data="コードB">
+listA = [2, 3, 5]
+listB = listA
+listB += [7, 9]
+print(listA)     # [2, 3, 5, 7, 9]
+print(listB)     # [2, 3, 5, 7, 9]</code>
+		</pre>
+		<div class="content">
+			この２つのコードはほぼ同じ構造だが、このような違いが生まれる。
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/3-->
+		<h3>スタック領域とヒープ領域</h3>
+        <div class="content">
+			プログラムが扱うメモリは、<strong>スタック領域</strong>と<strong>ヒープ領域</strong>に分けられる。
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th class = 'txt3'></th>
+					<th>スタック領域</th>
+					<th>ヒープ領域</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class = 'title'>容量</td>
+					<td>小さい</td>
+					<td>大きい</td>
+				</tr>
+				<tr>
+					<td class = 'title'>柔軟性</td>
+					<td>低い</td>
+					<td>高い</td>
+				</tr>
+				<tr>
+					<td class = 'title'>アクセス</td>
+					<td>高速</td>
+					<td>低速</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/4-->
+		<h3>値型と参照型</h3>
+        <div class="content">
+			プログラミングにおける変数は、「値の管理の仕方」という観点で、<strong>値型</strong>と<strong>参照型</strong>に分けられる。実際にはポインタ型もあるが、今回は省略する。
+			また、その違いが明確な言語として、C# や C++ が挙げられる。<br><br>
+			<dl>
+				<dt>値型</dt>
+				<dd>スタック領域に直接値をもつ。</dd>
+				<dt>参照型</dt>
+				<dd>実体はヒープ領域にもち、その参照値をスタック領域にもつ。</dd>
+			</dl>
+		</div>
+		<br>
+		<h4>「a = 10」の例</h4>
+		<h5>整数が値型の場合</h5>
+		<img src="../svgImage/描画1.svg" width="1000" height="500">
+		<br><br><br>
+		<h5>整数が参照型の場合</h5>
+		<img src="../svgImage/描画2.svg" width="1000" height="500">
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/5-->
+		<h3>ミュータブルとイミュータブル</h3>
+        <div class="content">
+			メモリアドレスは変わらずに、後から値を変更できるものを<strong>ミュータブル</strong>、そうでないものを<strong>イミュータブル</strong>という。
+			その違いが明確な言語として、Python や Rust が挙げられる。
+			変数の値を書きかえる際に、以下のような処理の違いがある。<br><br>
+			<dl>
+				<dt>ミュータブル</dt>
+				<dd>メモリアドレスは変わらずに値だけが変更される。</dd>
+				<dt>イミュータブル</dt>
+				<dd>新たなメモリアドレスに値が用意される。</dd>
+			</dl>
+		</div>
+		<br>
+		<h4>「a = 10」⇒「a = 20」の例</h4>
+		<br>
+		<h5>整数がミュータブルかつ値型の場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画1.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 20</div>
+							<div class = "flex-item"><img src="../svgImage/描画5.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<h5>整数がミュータブルかつ参照型の場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画2.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 20</div>
+							<div class = "flex-item"><img src="../svgImage/描画6.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<h5>整数がイミュータブルかつ値型の場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画1.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 20</div>
+							<div class = "flex-item"><img src="../svgImage/描画4.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<h5>整数がイミュータブルかつ参照型の場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画2.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 20</div>
+							<div class = "flex-item"><img src="../svgImage/描画3.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/6-->
+		<h3>値渡しと参照渡し</h3>
+        <div class="content">
+			変数から変数への値の受け渡しは<strong>値渡し</strong>と<strong>参照渡し</strong>の2種類がある。
+			また、その違いが明確な言語として、C# や C++ が挙げられる。<br><br>
+			<dl>
+				<dt>値渡し</dt>
+				<dd>値をコピーして渡す。２つの変数は値が同じだけで別物。</dd>
+				<dt>参照渡し</dt>
+				<dd>参照値を渡す。２つの変数が連動する。一心同体の状態。</dd>
+			</dl>
+		</div>
+		<br>
+		<h4>「a = 10」⇒「b = a」の例</h4>
+		<br>
+		<h5>整数が値型でかつ値渡しをする場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画1.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画7.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<h5>整数が参照型でかつ値渡しをする場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画2.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画8.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<h5>整数が値型でかつ参照渡しをする場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画1.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画9.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<h5>整数が参照型でかつ参照渡しをする場合</h5>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画2.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画10.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/7-->
+		<h3>これまでのまとめ</h3>
+        <div class="content">
+			<p>①変数の値の管理の仕方</p>
+			<dl>
+				<dt>値型</dt>
+				<dd>スタック領域に直接値をもつ。</dd>
+				<dt>参照型</dt>
+				<dd>実体はヒープ領域にもち、その参照値をスタック領域にもつ。</dd>
+			</dl>
+			<br><br>
+			<p>②変数の値を書きかえたときの処理</p>
+			<dl>
+				<dt>ミュータブル</dt>
+				<dd>メモリアドレスは変わらずに値だけが変更される。</dd>
+				<dt>イミュータブル</dt>
+				<dd>新たなメモリアドレスに値が用意される。</dd>
+			</dl>
+			<br><br>
+			<p>③変数から変数への値の受け渡しの仕方</p>
+			<dl>
+				<dt>値渡し</dt>
+				<dd>値をコピーして渡す。２つの変数は値が同じだけで別物。</dd>
+				<dt>参照渡し</dt>
+				<dd>参照値を渡す。２つの変数が連動する。一心同体の状態。</dd>
+			</dl>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/8-->
+		<h3>例①</h3>
+        <div class="content">
+			次のコードは文法がPythonと似ている疑似言語であるとする。
+		</div>
+		<pre>
+			<code class="python">a = 10
+b = a
+b = 20</code>
+		</pre>
+		<div class="content">
+			<p>このコードにおけるメモリ管理について、4パターンに分けて解説する。</p>
+			<ol>
+				<li>整数が値型 ＆ 値渡しをする</li>
+				<li>整数が参照型 ＆ 値渡しをする</li>
+				<li>整数が値型 ＆ 参照渡しをする</li>
+				<li>整数が参照型 ＆ 参照渡しをする</li>
+			</ol>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/9-->
+		<h3>値型 × 値渡し</h3>
+		<pre>
+			<code class="python">a = 10
+b = a
+b = 20</code>
+		</pre>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画1.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画7.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (ミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理1.svg" width="1000"></div>
+						<div class = "flex-item">a の値は変わらない</div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (イミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理2.svg" width="1000"></div>
+						<div class = "flex-item">a の値は変わらない</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/10-->
+		<h3>参照型 × 値渡し</h3>
+		<pre>
+			<code class="python">a = 10
+b = a
+b = 20</code>
+		</pre>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画2.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画8.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (ミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理3.svg" width="1000"></div>
+						<div class = "flex-item">a の値も変わる</div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (イミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理4.svg" width="1000"></div>
+						<div class = "flex-item">a の値は変わらない</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/11-->
+		<h3>値型 × 参照渡し</h3>
+		<pre>
+			<code class="python">a = 10
+b = a
+b = 20</code>
+		</pre>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画1.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画9.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (ミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理5.svg" width="1000"></div>
+						<div class = "flex-item">a の値も変わる</div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (イミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理6.svg" width="1000"></div>
+						<div class = "flex-item">a の値も変わる</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/12-->
+		<h3>参照型 × 参照渡し</h3>
+		<pre>
+			<code class="python">a = 10
+b = a
+b = 20</code>
+		</pre>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">a = 10</div>
+							<div class = "flex-item"><img src="../svgImage/描画2.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/描画10.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (ミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理7.svg" width="1000"></div>
+						<div class = "flex-item">a の値も変わる</div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">b = 20 (イミュータブル)</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理8.svg" width="1000"></div>
+						<div class = "flex-item">a の値も変わる</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/16/13-->
+		<h3>例①　まとめ</h3>
+		<pre>
+			<code class="python">a = 10
+b = a
+b = 20</code>
+		</pre>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th>パターン</th>
+					<th>a の値</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>値型 × 値渡し</td>
+					<td>変わらない</td>
+				</tr>
+				<tr>
+					<td>参照型 × 値渡し</td>
+					<td>ミュータブル：変わる<br>イミュータブル：変わらない</td>
+				</tr>
+				<tr>
+					<td>値型 × 参照渡し</td>
+					<td>変わる</td>
+				</tr>
+				<tr>
+					<td>参照型 × 参照渡し</td>
+					<td>変わる</td>
+				</tr>
+			</tbody>
+		</table>
+        <div class="content">
+			これらのことから、ミュータブルとイミュータブルの違いが意味を持つのは、参照型の変数を値渡ししてできた変数について、値を書きかえるときだけであることが分かる。
+		</div>
+	</section>
+</section>
+
+<section>
+	<section class="wholeMargin">
+		<!--#/17/0-->
+		<h2>メモリ管理②</h2>
+	</section>
+    <section class="wholeMargin">
+		<!--#/17/1-->
+		<h3>例②</h3>
+        <div class="content">
+			次のコードは文法がPythonと似ている疑似言語であるとする。
+		</div>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			常に、整数はイミュータブル、リストはミュータブルとする。<br>
+			このコードにおけるメモリ管理について、8パターンに分けて解説する。
+		</div>
+		<div class="content">
+			(ⅰ) 全て値渡しをするとき
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th class = 'txt3'>整数 \ リスト</th>
+					<th>値型</th>
+					<th>参照型</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class = 'title'>値型</td>
+					<td>①</td>
+					<td>②</td>
+				</tr>
+				<tr>
+					<td class = 'title'>参照型</td>
+					<td>③</td>
+					<td>④</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="content">
+			(ⅱ) 全て参照渡しをするとき
+		</div>
+		<table class="table_design08">
+			<thead>
+				<tr>
+					<th class = 'txt3'>整数 \ リスト</th>
+					<th>値型</th>
+					<th>参照型</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class = 'title'>値型</td>
+					<td>⑤</td>
+					<td>⑥</td>
+				</tr>
+				<tr>
+					<td class = 'title'>参照型</td>
+					<td>⑦</td>
+					<td>⑧</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/2-->
+		<h3>パターン１</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て値渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理11.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理12.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理13.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理14.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理15.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理16.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/3-->
+		<h3>パターン２</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て値渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理11.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理12.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理13.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理14.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理15.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理16.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/4-->
+		<h3>パターン３</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て値渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理23.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理24.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理25.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理26.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理27.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理28.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/5-->
+		<h3>パターン４</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て値渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理29.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理30.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理31.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理32.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理33.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理34.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/6-->
+		<h3>パターン５</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て参照渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理35.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理36.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理37.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理38.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理39.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理40.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/7-->
+		<h3>パターン６</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て参照渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理41.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理42.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理43.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理44.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理45.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理46.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/8-->
+		<h3>パターン７</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>値型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て参照渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理47.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理48.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理49.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理50.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理51.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理52.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/9-->
+		<h3>パターン８</h3>
+		<pre>
+			<code class="python">A = [2, 3]
+
+B = A
+B[0] = 1
+
+a = A[1]
+b = a
+b = 4</code>
+		</pre>
+		<div class="content">
+			条件の確認
+		</div>
+		<table class="table_design08">
+			<tbody>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>イミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>ミュータブル</td>
+				</tr>
+				<tr>
+					<td class = 'title'>整数</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>リスト</td>
+					<td>参照型</td>
+				</tr>
+				<tr>
+					<td class = 'title'>渡し方</td>
+					<td>全て参照渡し</td>
+				</tr>
+			</tbody>
+		</table>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">A = [2, 3]</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理53.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">B = A</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理54.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+		<br><br>
+		<div class ="flex-item">
+			<div class ="flex-container">
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">B[0] = 1</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理55.svg" width="1000"></div>
+					</div>
+				</div>
+				<div class ="flex-item">
+					<div class = "flex-container-column">
+						<div class = "flex-item">a = A[1]</div>
+						<div class = "flex-item"><img src="../svgImage/メモリ管理56.svg" width="1000"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class ="flex-container">
+            <div class ="flex-item">
+				<div class ="flex-container">
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = a</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理57.svg" width="1000"></div>
+						</div>
+					</div>
+					<div class ="flex-item">
+						<div class = "flex-container-column">
+							<div class = "flex-item">b = 4</div>
+							<div class = "flex-item"><img src="../svgImage/メモリ管理58.svg" width="1000"></div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</section>
+	<section class="wholeMargin">
+		<!--#/17/10-->
+		<h3>Pythonの場合</h3>
+        <div class="content">
+			Python の型は全てが<strong>参照型</strong>であり、値の渡し方は全てが<strong>値渡し</strong>である。<br><br>
+			メモリのどこに値が格納されているかを返す<strong>id関数</strong>を用いて、Pythonでのメモリ管理を調べることができる。
+			<div class="anotation">
+				※変数が格納されているアドレスではなく、値が格納されているアドレスを返すことに注意。
+			</div>
+		</div>
+		<pre>
+			<code class="python withTitle" data="例（id関数）">
+num1 = 10
+num2 = num1
+
+print(id(num1))   # 実行環境によって異なる
+print(id(num2))   # 実行環境によって異なる
+
+print(id(num1) == id(num2))   # True
+num2 = 20
+print(id(num1) == id(num2))   # False</code>
+		</pre>
 	</section>
 </section>
 

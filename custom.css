@@ -89,6 +89,7 @@ padding: 30px;
 .table_design08 th, .table_design08 td {
   border: 2px solid #d2e8f1;
   padding: 10px 0px;
+  vertical-align: middle;
 }
 .table_design08 thead th {
   background-color: #4d9bc1;
@@ -103,6 +104,13 @@ padding: 30px;
 .table_design08 tbody th {
   color: #4d9bc1;
   font-weight: bold;
+}
+.title {
+  background-color: #77b0cc;
+  color: #fff;
+  border: 2px solid #4d9bc1;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 th:first-child {
   border-top-left-radius: 15px; /* 左上の角を丸くする */
@@ -119,6 +127,9 @@ td:first-child:last-child {
 }
 .txt2 {
   width: 600px;
+}
+.txt3 {
+  width: 250px;
 }
 
 .nomargin {
